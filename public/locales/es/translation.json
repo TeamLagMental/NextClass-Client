@@ -1,0 +1,30 @@
+{
+    "buttons" 	: {
+		"login" : "Ingresar",
+		"create_account" : "Crear cuenta"
+    },
+    "header" : {
+        "home" : "Inicio",
+        "others" : "Otros",
+        "contact" : "Contacto",
+        "login" : "Iniciar Sesión"
+    },
+	"generals" : {
+        "language" : "Idioma",
+        "home" : "Inicio",
+        "login" : "Iniciar sesión",
+		"hello" : "Hola",
+        "bye" : "Adiós",
+        "user" : "Uusario",
+        "username" : "Nombre de usuario",
+        "password" : "Contraseña",
+        "forgot_password" : "¿Se te olvidó tu contraseña?",
+        "login_error1" : "Usuario y/o contraseña incorrectos",
+        "back_to_dashboard" : "Volver al panel",
+        "go_back" : "Volver atrás"
+    },
+    "languages" : {
+        "es" : "Español",
+        "en" : "Inglés"
+    }
+}

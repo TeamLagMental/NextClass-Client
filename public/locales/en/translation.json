@@ -1,0 +1,30 @@
+{
+    "buttons" 	: {
+		"login" : "Login",
+		"create_account" : "Create account"
+    },
+    "header" : {
+        "home" : "Home",
+        "others" : "Others",
+        "contact" : "Contact",
+        "login" : "Login"
+    },
+	"generals" : {
+        "language" : "Idiom",
+        "home" : "Home",
+        "login" : "Login",
+		"hello" : "Hi",
+        "bye" : "Bye",
+        "user" : "User",
+        "username" : "Username",
+        "password" : "Password",
+        "forgot_password" : "Did you forget your password?",
+        "login_error1" : "Incorrect username and/or password",
+        "back_to_dashboard" : "Back to dashboard",
+        "go_back" : "Go back"
+	},
+    "languages" : {
+        "es" : "Spanish",
+        "en" : "English"
+    }
+}
