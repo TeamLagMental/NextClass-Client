@@ -7,7 +7,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { setContext } from 'apollo-link-context'
 
 const httpLink = createHttpLink({
-  uri: '/graphql'
+  uri: 'https://sheltered-everglades-00923.herokuapp.com/graphql'
   //uri: 'http://localhost:5000'
 })
 
