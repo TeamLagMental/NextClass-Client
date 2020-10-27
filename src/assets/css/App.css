@@ -17,6 +17,7 @@ body{
   overflow: hidden;
 }
 
+/*
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -28,6 +29,7 @@ body{
 ::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.2);
 }
+*/
 
 .list-group-item.list-group-item-action.bg-dark.text-light.active2{
   background: linear-gradient(#00000071, #060207b9);

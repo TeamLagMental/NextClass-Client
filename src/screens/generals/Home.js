@@ -24,7 +24,7 @@ function Home(){
             <div style={ jumbotronStyle } className="jumbotron rounded-0 text-center">
                 <br/><br/>
                 <div className="container">
-                    <h1 className="display-3 text-light home-text" style={textResponsive}>¡Bienvenido!</h1>
+                    <h1 className="display-3 text-light home-text" style={textResponsive}>¡Bienvenid@!</h1>
                     <p className="text-light home-text">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
                     <p>
                         <Link to="/dashboard" className="btn btn-primary" role="button">

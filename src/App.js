@@ -44,7 +44,7 @@ class App extends Component {
                     })}
                   />
                 )
-              } else if(route.authRoute !== true && route.privateAccessRoute !== true) {
+              } else if(route.authRoute !== true && route.privateAccessRoute !== true){
                 return (
                   <Route
                     key={index}

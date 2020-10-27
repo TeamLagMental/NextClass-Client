@@ -26,7 +26,7 @@ const nItems2 = [
     },
     {
         name: "Profile",
-        to: "/",
+        to: "#",
         liClassName: "nav-item dropdown",
         aClassName: "nav-link dropdown-toggle",
         id: "navbarDropdown",
