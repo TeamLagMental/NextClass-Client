@@ -4,32 +4,41 @@ import { AuthContext } from './../context/auth'
 
 export const AuthRoute = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext)
-
   return (
     <Route
       {...rest}
-      render={ (props) => user ? <Redirect to="/dashboard" /> : <Component {...props} /> }
+      render={ (props) => user ? <Redirect to="/s" /> : <Component {...props} /> }
     />
   )
 }
 
 export const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => {
   const { user } = useContext(AuthContext)
+
+  /*
+  if(user){
+    return (
+      <Route
+        {...rest}
+        render={ (props) => user.ranks.includes(aId) ? <Component {...props} /> : <Redirect to="/s" /> }
+      />
+    )
+  } else {
+    return (
+      <Route {...rest} render={ () => <Redirect to="/login" /> }/>
+    )
+  }*/
   
   return (
     <Route
       {...rest}
       render = { props =>
         user ?
-          user.access_id >= aId ?
-          <Component { ...props } />
-        :
-          <Redirect to="/dashboard" />
+          user.ranks.includes(aId) ? <Component {...props} /> : <Redirect to="/s" />
         :
           <Redirect to="/login" />
       }
     />
   )
+  
 }
-
-//export default AuthRoute

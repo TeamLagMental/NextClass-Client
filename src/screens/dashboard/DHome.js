@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import { AuthContext } from './../../context/auth'
 
-function DHome(){
-    return(
-        <div className="container-fluid">
-            <h1 className="mt-4 text-light">Panel de administración</h1>
-            <div className="card">
-                <div className="card-body">
-                    Gg asd asd asd
-                </div>
-            </div>
-        </div>
+import { StudentDHome } from './student'
+
+export const DHome = () => {
+    const { user } = useContext(AuthContext)
+
+    return user.access_id < 2 ? (
+        <StudentDHome />
+    ) : user.access_id < 3 ? (
+        <div>Profesor</div>
+    ) : (
+        <div>Administrador</div>
     )
 }
-
-export default DHome

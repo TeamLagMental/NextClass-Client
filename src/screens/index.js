@@ -1,5 +1,6 @@
-import Home from './generals/Home'
-import Login from './generals/Login'
-import DHome from './dashboard/DHome'
+// Generals
+export { Home } from './generals/Home'
+export { Login } from './generals/Login'
 
-export { Home, Login, DHome }
+// Dashboard
+export { SelectType } from './dashboard/SelectType'

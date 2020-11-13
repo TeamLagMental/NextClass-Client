@@ -1,71 +1,36 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Routes from './Routes'
 import { AuthProvider } from './context/auth'
 import { AuthRoute, PrivateAccessRoute } from './utils'
+import AppProvider from './components/dashboard/AppProvider'
 
 class App extends Component {
   render(){
     return (
+      <AppProvider>
       <AuthProvider>
         <Router>
-          <div>
+          <Switch>
             {Routes.map((route, index) => {
               if(route.authRoute === true){
                 return (
-                  <AuthRoute
-                    key={index}
-                    path={route.path}
-                    strict
-                    exact={route.exact}
-                    component={(props => {
-                      return (
-                        <route.layout {...props}>
-                          <route.component {...props} />
-                        </route.layout>
-                      )
-                    })}
-                  />
+                  <AuthRoute key={index} exact path={route.path} component={route.component}/>
                 )
               } else if(route.privateAccessRoute === true){
                 return (
-                  <PrivateAccessRoute
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    aId={route.aId}
-                    strict
-                    component={(props => {
-                      return (
-                        <route.layout {...props}>
-                          <route.component {...props} />
-                        </route.layout>
-                      )
-                    })}
-                  />
-                )
-              } else if(route.authRoute !== true && route.privateAccessRoute !== true){
-                return (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    component={(props => {
-                      return (
-                        <route.layout {...props}>
-                          <route.component {...props} />
-                        </route.layout>
-                      )
-                    })}
-                  />
+                  <PrivateAccessRoute key={index} path={route.path} aId={route.aId} component={route.component}/>
                 )
               } else {
-                return console.log("error")
+                return (
+                  <Route key={index} exact path={route.path} component={route.component}/>
+                )
               }
             })}
-          </div>
+          </Switch>
         </Router>
       </AuthProvider>
+      </AppProvider>
     )
   }
 }

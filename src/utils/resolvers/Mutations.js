@@ -8,6 +8,7 @@ export const LOGIN_USER = gql`
             username
             createdAt
             access_id
+            ranks
             token
         }
     }
