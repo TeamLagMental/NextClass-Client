@@ -17,9 +17,22 @@ export const studentRoutes = {
             component: DStudentSubjects
         },{
             path: '/d/student/subjects/:id',
-            name: 'Materias',
             type: 'link',
-            icon: Apps,
+            component: DStudentSubject,
+            noMenu: true
+        },{
+            path: '/d/student/subjects/:id/tasks',
+            type: 'link',
+            component: DStudentSubject,
+            noMenu: true
+        },{
+            path: '/d/student/subjects/:id/progress',
+            type: 'link',
+            component: DStudentSubject,
+            noMenu: true
+        },{
+            path: '/d/student/subjects/:id/people',
+            type: 'link',
             component: DStudentSubject,
             noMenu: true
         }

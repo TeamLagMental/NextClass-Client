@@ -169,7 +169,7 @@ const Header = ({
         </Hidden>
 
         <Hidden xsDown>
-          <IconButton color="inherit" onClick={toggleFullscreen}>
+          <IconButton color="inherit" onClick={handleSettingdToggle}>
             <FullscreenIcon />
           </IconButton>
         </Hidden>
