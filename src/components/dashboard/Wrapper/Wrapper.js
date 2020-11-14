@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Wrapper = ({ children, padding }) => {
-  const classes = useStyles();
+  const classes = useStyles()
   return <div className={padding ? classes.root : null}>{children}</div>
 }
 

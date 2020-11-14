@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { Link } from 'react-router-dom'
+
 const useStyles = makeStyles(theme => ({
   media: {
     height: 0
@@ -40,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const PostCard = ({ title, subtitle, text, image, imageHeight, avatar }) => {
+const PostCard = ({ title, subtitle, text, image, imageHeight, avatar, link }) => {
   const classes = useStyles();
   return (
     <Card>
@@ -65,7 +67,9 @@ const PostCard = ({ title, subtitle, text, image, imageHeight, avatar }) => {
         </IconButton>
         <span className="flexSpacer" />
         <Button>More Info</Button>
-        <Button>Download</Button>
+        <Link to={link}>
+          <Button>Ir a la asignatura</Button>
+        </Link>
       </CardActions>
     </Card>
   );
@@ -77,7 +81,8 @@ PostCard.propTypes = {
   text: PropTypes.string.isRequired,
   image: PropTypes.string,
   imageHeight: PropTypes.number,
-  avatar: PropTypes.element
+  avatar: PropTypes.element,
+  link: PropTypes.string
 };
 
 export default PostCard;

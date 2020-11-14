@@ -1,9 +1,5 @@
-// Icons
 import { Explore, Apps } from '@material-ui/icons'
-
-// Pages
-//import Home from './../views/dashboard/Dashboard'
-//import Subjects from './../views/dashboard/Subjects'
+import { DStudentHome, DStudentSubjects, DStudentSubject } from './../screens'
 
 export const studentRoutes = {
     items: [
@@ -12,13 +8,20 @@ export const studentRoutes = {
             name: 'Inicio',
             type: 'link',
             icon: Explore,
-            component: () => { return (<div>Student</div>) }
+            component: DStudentHome
         },{
             path: '/d/student/subjects',
             name: 'Materias',
             type: 'link',
             icon: Apps,
-            component: () => { return (<div>Materias del alumno</div>) }
+            component: DStudentSubjects
+        },{
+            path: '/d/student/subjects/:id',
+            name: 'Materias',
+            type: 'link',
+            icon: Apps,
+            component: DStudentSubject,
+            noMenu: true
         }
     ]
 }

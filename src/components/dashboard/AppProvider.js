@@ -1,16 +1,12 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react'
-
-import { StylesProvider, ThemeProvider, jssPreset } from '@material-ui/styles'
-import indigo from '@material-ui/core/colors/indigo'
-import red from '@material-ui/core/colors/red'
-import { createMuiTheme } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-
 import { create } from 'jss'
 import rtl from 'jss-rtl'
+import { StylesProvider, ThemeProvider, jssPreset } from '@material-ui/styles'
+import { useMediaQuery } from '@material-ui/core'
+import { indigo, red } from '@material-ui/core/colors'
+import { createMuiTheme } from '@material-ui/core/styles'
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] })
-
 const Context = createContext()
 const { Provider } = Context
 

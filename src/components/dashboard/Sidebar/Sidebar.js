@@ -44,13 +44,12 @@ const useStyles = makeStyles(theme => ({
 const Sidebar = ({ opened, toggleDrawer, routes, location }) => {
   const classes = useStyles();
   const [activeRoute, setActiveRoute] = useState(undefined);
-  const toggleMenu = index => setActiveRoute(activeRoute === index ? undefined : index);
+  const toggleMenu = index => setActiveRoute(activeRoute === index ? undefined : index)
 
   const menu = (
     <List component="div">
       {routes.map((route, index) => {
-        const isCurrentPath =
-          location.pathname.indexOf(route.path) > -1 ? true : false;
+        const isCurrentPath = location.pathname.indexOf(route.path) > -1 ? true : false
         return (
           <SidebarItem
             key={index}
@@ -60,26 +59,22 @@ const Sidebar = ({ opened, toggleDrawer, routes, location }) => {
             toggleMenu={toggleMenu}
             currentPath={isCurrentPath}
           />
-        );
+        )
       })}
     </List>
-  );
+  )
 
   return (
     <>
       <Hidden smDown>
         <Drawer
           variant="persistent"
-          classes={{
-            paper: classes.drawerPaper
-          }}
+          classes={{ paper: classes.drawerPaper }}
           open={opened}
           ModalProps={{
             keepMounted: false,
             className: classes.modal,
-            BackdropProps: {
-              className: classes.backdrop
-            },
+            BackdropProps: { className: classes.backdrop },
             onBackdropClick: toggleDrawer
           }}
         >
@@ -89,9 +84,7 @@ const Sidebar = ({ opened, toggleDrawer, routes, location }) => {
       <Hidden mdUp>
         <SwipeableDrawer
           variant="temporary"
-          classes={{
-            paper: classes.drawerPaper
-          }}
+          classes={{ paper: classes.drawerPaper }}
           open={opened}
           onClose={toggleDrawer}
           onOpen={toggleDrawer}
@@ -99,9 +92,7 @@ const Sidebar = ({ opened, toggleDrawer, routes, location }) => {
           ModalProps={{
             keepMounted: false,
             className: classes.modal,
-            BackdropProps: {
-              className: classes.backdrop
-            },
+            BackdropProps: { className: classes.backdrop },
             onBackdropClick: toggleDrawer
           }}
         >

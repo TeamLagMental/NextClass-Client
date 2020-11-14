@@ -4,4 +4,4 @@ export { Language }
 export { AuthRoute, PrivateAccessRoute } from './AuthRoute'
 export { FETCH_POSTS_QUERY } from './graphql'
 export { useForm } from './hooks'
-export { LOGIN_USER } from './resolvers/Mutations'
+export { LOGIN_USER, STUDENT_SUBJECTS, SUBJECTS, SUBJECT } from './resolvers/Mutations'

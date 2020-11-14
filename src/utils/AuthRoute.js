@@ -7,38 +7,22 @@ export const AuthRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={ (props) => user ? <Redirect to="/s" /> : <Component {...props} /> }
+      render={(props) => user ? <Redirect to="/s"/> : <Component {...props}/> }
     />
   )
 }
 
 export const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => {
   const { user } = useContext(AuthContext)
-
-  /*
-  if(user){
-    return (
-      <Route
-        {...rest}
-        render={ (props) => user.ranks.includes(aId) ? <Component {...props} /> : <Redirect to="/s" /> }
-      />
-    )
-  } else {
-    return (
-      <Route {...rest} render={ () => <Redirect to="/login" /> }/>
-    )
-  }*/
-  
   return (
     <Route
       {...rest}
-      render = { props =>
+      render={(props) =>
         user ?
-          user.ranks.includes(aId) ? <Component {...props} /> : <Redirect to="/s" />
+          user.ranks.includes(aId) ? <Component {...props}/> : <Redirect to="/s"/>
         :
-          <Redirect to="/login" />
+          <Redirect to="/login"/>
       }
     />
   )
-  
 }

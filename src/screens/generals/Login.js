@@ -22,10 +22,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column"
   },
   background: {
-    //backgroundColor: theme.palette.primary.main,
     backgroundImage: `radial-gradient(circle, rgba(51,23,64,0.5662640056022409) 0%, rgba(21,11,27,0.7203256302521008) 100%), url(${BackgroundIMG})`,
     backgroundRepeat: "no-repeat",
-    //backgroundPosition: "fixed",
     backgroundPosition: "center",
     backgroundSize: "cover",
   },

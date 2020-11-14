@@ -145,6 +145,8 @@ const DStudentLayout = () => {
     }
   }, [])
 
+  const sidebarItems = studentRoutes.items.filter(item => item.noMenu !== true)
+
   return user ? (
   <>
     <Header
@@ -158,7 +160,7 @@ const DStudentLayout = () => {
     />
 
     <div className={classNames(classes.panel, "theme-dark")}>
-      <Sidebar routes={studentRoutes.items} opened={opened} toggleDrawer={handleDrawerToggle}/>
+      <Sidebar routes={sidebarItems} opened={opened} toggleDrawer={handleDrawerToggle}/>
       <Workspace opened={opened}>{getRoutes}</Workspace>
       <NotificationCenter
         notificationsOpen={notificationsOpen}

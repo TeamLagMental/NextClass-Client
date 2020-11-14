@@ -7,7 +7,7 @@ import { blue } from '@material-ui/core/colors'
 import { makeStyles } from '@material-ui/core/styles'
 import { AuthContext } from './../../context/auth'
 
-const BackgroundIMG = 'https://cutewallpaper.org/21/wallpaper-gif-1920x1080/Space-Stars-Black-Background-Gif-1920x1080-Star-.gif'
+const BackgroundIMG = "https://cutewallpaper.org/21/wallpaper-gif-1920x1080/Space-Stars-Black-Background-Gif-1920x1080-Star-.gif"
 
 const useStyles = makeStyles(theme => ({
     session: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         backgroundImage: `radial-gradient(circle, rgba(51,23,64,0.5662640056022409) 0%, rgba(21,11,27,0.7203256302521008) 100%), url(${BackgroundIMG})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        backgroundSize: "cover",
+        backgroundSize: "cover"
     },
     content: {
         padding: `40px ${theme.spacing(1)}px`,
@@ -67,7 +67,7 @@ export const SelectType = () => {
                                     {userRank.map((rank) => (
                                         <div key={rank}>
                                             {rank === 3 ? (
-                                                <Link to='/d/admin'>
+                                                <Link to="/d/admin">
                                                     <ListItem button>
                                                         <ListItemAvatar>
                                                             <Avatar className={classes.avatar} src="https://i.redd.it/vl3e90ahihf51.jpg"/>
@@ -76,7 +76,7 @@ export const SelectType = () => {
                                                     </ListItem>
                                                 </Link>
                                             ) : rank === 2 ? (
-                                                <Link to='/d/teacher'>
+                                                <Link to="/d/teacher">
                                                     <ListItem button>
                                                         <ListItemAvatar>
                                                             <Avatar className={classes.avatar}>
@@ -87,7 +87,7 @@ export const SelectType = () => {
                                                     </ListItem>
                                                 </Link>
                                             ) : (
-                                                <Link to='/d/student'>
+                                                <Link to="/d/student">
                                                     <ListItem button>
                                                         <ListItemAvatar>
                                                             <Avatar className={classes.avatar} src="https://previews.123rf.com/images/creativenature/creativenature1503/creativenature150300034/37192006-un-retrato-resoluci%C3%B3n-completa-de-la-cabeza-de-un-var%C3%B3n-zorro-rojo-vulpes-vulpes-en-entorno-natural-con-fo.jpg"/>

@@ -1,8 +1,10 @@
+
 // Capitalize
 export function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-  
+
+/*
 // Format price
 export function formatPrice(number) {
   const fnumber = parseFloat(number);
@@ -104,4 +106,5 @@ export async function getWeather(city, country, days) {
     } catch (e) {
         return ""
     }
-}  
+}
+*/

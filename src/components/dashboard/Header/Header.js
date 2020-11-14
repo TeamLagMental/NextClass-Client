@@ -200,25 +200,25 @@ const Header = ({
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
-            <ListItemText primary="Settings" />
+            <ListItemText primary="Configuraciones" />
           </MenuItem>
           <MenuItem onClick={handleCloseMenu}>
             <ListItemIcon>
               <AccountBoxIcon />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText primary="Perfil" />
           </MenuItem>
           <MenuItem onClick={handleCloseMenu}>
             <ListItemIcon>
               <NotificationsOffIcon />
             </ListItemIcon>
-            <ListItemText primary="Disable notifications" />
+            <ListItemText primary="Desactivar notificaciones" />
           </MenuItem>
           <MenuItem onClick={logout}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary="Sign out" />
+            <ListItemText primary="Cerrar Sesión" />
           </MenuItem>
         </Menu>
       </Toolbar>
@@ -227,13 +227,13 @@ const Header = ({
           <Toolbar className={classes.toolBar}>
             <div className={classes.searchWrapper}>
               <form className={classNames(classes.searchForm, 'mr-0')}>
-                <IconButton aria-label="Search" className={classes.searchIcon}>
+                <IconButton aria-label="Buscar" className={classes.searchIcon}>
                   <SearchIcon />
                 </IconButton>
                 <input
                   className={classes.searchInput}
                   type="text"
-                  placeholder="Search"
+                  placeholder="Buscar"
                   autoFocus={true}
                 />
               </form>

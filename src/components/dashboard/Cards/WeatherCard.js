@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import {
-  capitalize,
-  getWeather,
-  getWeatherIcon,
-  windDirection
-} from '../../helpers';
+import React, { useEffect, useState } from 'react'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import CallMadeIcon from '@material-ui/icons/CallMade'
+import CallReceivedIcon from '@material-ui/icons/CallReceived'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Grid from '@material-ui/core/Grid'
+import PropTypes from 'prop-types'
+import Typography from '@material-ui/core/Typography'
+import classNames from 'classnames'
+import format from 'date-fns/format'
+import { makeStyles } from '@material-ui/core/styles'
 
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import CallMadeIcon from '@material-ui/icons/CallMade';
-import CallReceivedIcon from '@material-ui/icons/CallReceived';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
-import format from 'date-fns/format';
-import { makeStyles } from '@material-ui/core/styles';
+import { capitalize, getWeather, getWeatherIcon, windDirection } from '../../helpers'
 
 const useStyles = makeStyles(theme => ({
   flip: {
