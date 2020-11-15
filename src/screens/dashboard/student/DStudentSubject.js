@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import { SUBJECT } from './../../../utils'
 import { AuthContext } from './../../../context/auth'
@@ -19,6 +20,7 @@ function DStudentSubject(props){
             {data.getSubject.id}
             {data.getSubject.name}
             <br/>
+            <Link to="/live/1">Live</Link>
             {data.getSubject.students.map(s => (<li>{s.id}</li>))}
         </div>
     ) : (
