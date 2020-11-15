@@ -18,7 +18,8 @@ function DStudentSubject(props){
         <div>
             {data.getSubject.id}
             {data.getSubject.name}
-            {data.getSubject.students.map(s => s.id)}
+            <br/>
+            {data.getSubject.students.map(s => (<li>{s.id}</li>))}
         </div>
     ) : (
         <p>La materia existe pero no estás inscripto en ella</p>
