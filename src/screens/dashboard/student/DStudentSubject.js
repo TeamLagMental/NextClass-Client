@@ -3,30 +3,12 @@ import { useQuery } from '@apollo/react-hooks'
 import { SUBJECT } from './../../../utils'
 import { AuthContext } from './../../../context/auth'
 
-import annyang from 'annyang'
-
 function DStudentSubject(props){
     const postId = props.match.params.id
     const { user } = useContext(AuthContext)
     const { loading, error, data } = useQuery(SUBJECT, {
         variables: { subjectId: postId }
     })
-
-    if(annyang){
-        const comandos = {
-            'hola': function(){ alert('Hola papu') },
-            'reproducir video': playVideo
-        }
-    
-        annyang.addCommands(comandos)
-        annyang.setLanguage("es-MX")
-    
-        annyang.start()
-    
-        function playVideo(){
-            alert('Chupala qlo')
-        }
-    }
 
     return loading ? (
         <p>Loading...</p>

@@ -9,6 +9,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
 import MenuIcon from '@material-ui/icons/Menu'
+import { KeyboardVoice } from '@material-ui/icons'
 import SearchIcon from '@material-ui/icons/Search'
 import SettingsIcon from '@material-ui/icons/Settings'
 import {
@@ -23,6 +24,9 @@ import {
   MenuItem,
   Toolbar
 } from '@material-ui/core'
+
+import annyang from 'annyang'
+
 import { fade, makeStyles } from '@material-ui/core/styles'
 import { AuthContext } from './../../../context/auth'
 
@@ -122,6 +126,31 @@ const Header = ({
     if (searchExpanded) handleSearchExpandToggle()
   }
 
+  let annyangSatus = false
+
+  const activarAnnyang = () => {
+    if(!annyangSatus){
+      annyangSatus = true
+      alert('Activado, empieza a hablar')
+
+      if(annyang){
+        const comandos = {
+          'hola': function(){ alert('Hola papu') },
+          'reproducir video': function(){ alert('Chupala qlo') }
+        }
+
+        annyang.addCommands(comandos)
+        annyang.setLanguage("es-MX")
+        
+        annyang.start()
+      }
+    } else {
+      annyangSatus = false
+      alert('Desactivado')
+      annyang.abort()
+    }
+  }
+
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
@@ -169,10 +198,16 @@ const Header = ({
         </Hidden>
 
         <Hidden xsDown>
-          <IconButton color="inherit" onClick={handleSettingdToggle}>
+          <IconButton color="inherit" onClick={toggleFullscreen}>
             <FullscreenIcon />
           </IconButton>
         </Hidden>
+
+        <IconButton color="inherit" onClick={activarAnnyang}>
+          <Badge badgeContent={5} color="secondary">
+            <KeyboardVoice/>
+          </Badge>
+        </IconButton>
 
         <IconButton color="inherit" onClick={handleNotificationToggle}>
           <Badge badgeContent={5} color="secondary">
