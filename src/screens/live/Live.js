@@ -3,6 +3,11 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import styled from "styled-components";
 
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+/*
 const Container = styled.div`
     padding: 20px;
     display: flex;
@@ -10,11 +15,11 @@ const Container = styled.div`
     width: 90%;
     margin: auto;
     flex-wrap: wrap;
-`;
+`;*/
 
 const StyledVideo = styled.video`
-    height: 40%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
 `;
 
 const videoConstraints = {
@@ -95,18 +100,26 @@ const Live = (props) => {
     }
 
     return (
-        <Container>
-            <StyledVideo muted ref={userVideo} autoPlay playsInline />
+        <div>
+                <Container maxWidth="sm">
+                    <Typography component="div" style={{ backgroundColor: '#cfe8fc', width: '500px', height: '250px' }}>
+                        <StyledVideo muted ref={userVideo} autoPlay playsInline />
+                    </Typography>
+                </Container>
             {peers.map((peer, index) => {
                 peer.on("stream", stream => {
                     ref.current.srcObject = stream;
                 })
 
                 return (
-                    <StyledVideo key={index} playsInline autoPlay ref={ref} />
+                    <Container maxWidth="sm">
+                        <Typography component="div" style={{ backgroundColor: '#cfe8fc', width: '500px', height: '250px' }}>
+                            <StyledVideo key={index} playsInline autoPlay ref={ref} />
+                        </Typography>
+                    </Container>
                 )
             })}
-        </Container>
+        </div>
     );
 };
 
