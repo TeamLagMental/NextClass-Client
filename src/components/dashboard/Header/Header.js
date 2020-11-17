@@ -136,7 +136,7 @@ const Header = ({
       if(annyang){
         const comandos = {
           'hola': function(){ alert('Hola papu') },
-          'reproducir video': function(){ alert('Chupala qlo') }
+          'reproducir video': function(){ alert('Chichu prro sucio') }
         }
 
         annyang.addCommands(comandos)
