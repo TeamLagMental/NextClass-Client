@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-
+//import { Redirect } from 'react-router-dom'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import FullscreenIcon from '@material-ui/icons/Fullscreen'
@@ -24,9 +24,6 @@ import {
   MenuItem,
   Toolbar
 } from '@material-ui/core'
-
-import annyang from 'annyang'
-
 import { fade, makeStyles } from '@material-ui/core/styles'
 import { AuthContext } from './../../../context/auth'
 
@@ -125,18 +122,19 @@ const Header = ({
     toogleNotifications()
     if (searchExpanded) handleSearchExpandToggle()
   }
-
-  let annyangSatus = false
+  
+  //let annyangSatus = false
 
   const activarAnnyang = () => {
-    if(!annyangSatus){
+    /*if(!annyangSatus){
       annyangSatus = true
       alert('Activado, empieza a hablar')
 
       if(annyang){
         const comandos = {
-          'hola': function(){ alert('Hola papu') },
-          'reproducir video': function(){ alert('Chichu prro sucio') }
+          'hola': () => <Redirect to="/d/student/subjects"/>,
+          'reproducir video': function(){ alert('Chichu prro sucio') },
+          'materias': () => { window.locationf="/d/student/subjects" }
         }
 
         annyang.addCommands(comandos)
@@ -148,7 +146,8 @@ const Header = ({
       annyangSatus = false
       alert('Desactivado')
       annyang.abort()
-    }
+    }*/
+    return false
   }
 
   return (
