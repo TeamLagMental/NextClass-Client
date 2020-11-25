@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-//import { Redirect } from 'react-router-dom'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import FullscreenIcon from '@material-ui/icons/Fullscreen'
@@ -9,7 +8,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
 import MenuIcon from '@material-ui/icons/Menu'
-import { KeyboardVoice } from '@material-ui/icons'
+import { MicNoneOutlined, MicOffOutlined } from '@material-ui/icons'
 import SearchIcon from '@material-ui/icons/Search'
 import SettingsIcon from '@material-ui/icons/Settings'
 import {
@@ -26,6 +25,10 @@ import {
 } from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import { AuthContext } from './../../../context/auth'
+
+import { Redirect } from 'react-router-dom'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+//import StudentCommands from './../../../utils/voice/StudentCommands'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -94,70 +97,79 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = ({
-  logo,
-  logoAltText,
-  toggleFullscreen,
-  toggleDrawer,
-  toogleNotifications
-}) => {
+const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotifications }) => {
   const { logout } = useContext(AuthContext)
-
-  const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
   const [searchExpanded, setSearchExpanded] = useState(false)
-
+  const [statusSR, setStatusSR] = useState(false)  
+  const [iconSR, setIconSR] = useState(<MicOffOutlined/>)
+  const classes = useStyles()
   const handleSettingdToggle = event => setAnchorEl(event.currentTarget)
-
   const handleCloseMenu = () => setAnchorEl(null)
-
   const handleSearchExpandToggle = () => setSearchExpanded(!searchExpanded)
-
   const handleDrawerToggle = () => {
     toggleDrawer()
     if (searchExpanded) handleSearchExpandToggle()
   }
-
   const handleNotificationToggle = () => {
     toogleNotifications()
     if (searchExpanded) handleSearchExpandToggle()
   }
-  
-  //let annyangSatus = false
 
-  const activarAnnyang = () => {
-    /*if(!annyangSatus){
-      annyangSatus = true
-      alert('Activado, empieza a hablar')
 
-      if(annyang){
-        const comandos = {
-          'hola': () => <Redirect to="/d/student/subjects"/>,
-          'reproducir video': function(){ alert('Chichu prro sucio') },
-          'materias': () => { window.locationf="/d/student/subjects" }
+
+  const [message, setMessage] = useState('')
+  const redirectTo = (uri) => <Redirect to={ uri }/>
+
+  const directories = [
+    {
+      name: 'inicio',
+      uri: '/d/student'
+    },
+    {
+      name: 'materias',
+      uri: '/d/student/subjects'
+    }
+  ]
+  const commands = [
+    {
+      command: 'Quiero redireccionar a *',
+      callback: (directory) => {
+        const found = directories.find(element => element.name === directory)
+
+        if(found){
+          return setMessage(redirectTo(found.uri))
+        } else {
+          alert('No se encontró el directorio...')
         }
-
-        annyang.addCommands(comandos)
-        annyang.setLanguage("es-MX")
-        
-        annyang.start()
       }
+    }
+  ]
+
+  useSpeechRecognition({ commands })
+
+  const enableSR = () => {
+    if(!SpeechRecognition.browserSupportsSpeechRecognition()){
+      alert('Tu navegador no soporta esto...')
     } else {
-      annyangSatus = false
-      alert('Desactivado')
-      annyang.abort()
-    }*/
-    return false
+      if(statusSR){
+        SpeechRecognition.stopListening()
+        alert('Desactivado mi rey. Vuelva pronto...')
+        setIconSR(<MicOffOutlined/>)
+        return false
+      } else {
+        SpeechRecognition.startListening({ continuous: true, language: 'es-AR' })
+        alert('Activado. Empieza a hablar...')
+        setIconSR(<MicNoneOutlined/>)
+        return true
+      }
+    }
   }
 
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerToggle}
-        >
+        <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerToggle}>
           <MenuIcon />
         </IconButton>
 
@@ -202,10 +214,8 @@ const Header = ({
           </IconButton>
         </Hidden>
 
-        <IconButton color="inherit" onClick={activarAnnyang}>
-          <Badge badgeContent={5} color="secondary">
-            <KeyboardVoice/>
-          </Badge>
+        <IconButton color="inherit" onClick={() => setStatusSR(enableSR)}>
+          {iconSR}
         </IconButton>
 
         <IconButton color="inherit" onClick={handleNotificationToggle}>
@@ -275,6 +285,7 @@ const Header = ({
           </Toolbar>
         </Collapse>
       </Hidden>
+      {message}
     </AppBar>
   )
 }
