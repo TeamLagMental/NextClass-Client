@@ -22,11 +22,12 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  Toolbar
+  Toolbar,
+  Tooltip
 } from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import { AuthContext } from './../../../context/auth'
-import { studentCommands } from './../../../utils/voice/StudentCommands'
+import { StudentCommands } from './../../../utils/voice/StudentCommands'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -101,7 +102,6 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
   const [searchExpanded, setSearchExpanded] = useState(false)
   const [statusSR, setStatusSR] = useState(false)
   const [action, setAction] = useState('')
-  const [iconSR, setIconSR] = useState(<MicOffOutlined/>)
   const classes = useStyles()
   const handleSettingdToggle = event => setAnchorEl(event.currentTarget)
   const handleCloseMenu = () => setAnchorEl(null)
@@ -114,7 +114,7 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
     toogleNotifications()
     if (searchExpanded) handleSearchExpandToggle()
   }
-  const commands = studentCommands(setAction)
+  const commands = StudentCommands(setAction)
   const enableSR = () => {
     if(!SpeechRecognition.browserSupportsSpeechRecognition()){
       alert('Tu navegador no soporta esto...')
@@ -122,12 +122,10 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
       if(statusSR){
         SpeechRecognition.stopListening()
         alert('Desactivado mi rey. Vuelva pronto...')
-        setIconSR(<MicOffOutlined/>)
         return false
       } else {
         SpeechRecognition.startListening({ continuous: true, language: 'es-AR' })
         alert('Activado. Empieza a hablar...')
-        setIconSR(<MicNoneOutlined/>)
         return true
       }
     }
@@ -172,14 +170,18 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
         </Hidden>
 
         <Hidden xsDown>
-          <IconButton color="inherit" onClick={toggleFullscreen}>
-            <FullscreenIcon />
-          </IconButton>
+          <Tooltip title="Pantalla completa">
+            <IconButton color="inherit" onClick={toggleFullscreen}>
+              <FullscreenIcon />
+            </IconButton>
+          </Tooltip>
         </Hidden>
 
-        <IconButton color="inherit" onClick={() => setStatusSR(enableSR)}>
-          {iconSR}
-        </IconButton>
+        <Tooltip title={ (statusSR ? 'Desactivar' : 'Activar')+' comandos de voz' }>
+          <IconButton color="inherit" onClick={() => setStatusSR(enableSR)}>
+            { statusSR ? <MicOffOutlined/> : <MicNoneOutlined/> }
+          </IconButton>
+        </Tooltip>
 
         <IconButton color="inherit" onClick={handleNotificationToggle}>
           <Badge badgeContent={5} color="secondary">
