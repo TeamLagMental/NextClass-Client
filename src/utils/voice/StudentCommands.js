@@ -6,9 +6,13 @@ const studentCommandsDirectories = [
     {
         name: 'inicio',
         uri: '/d/student'
-    },
-    {
+    },{
+        name: 'carreras',
+        other: 'carrera',
+        uri: '/d/student/careers'
+    },{
         name: 'materias',
+        other: 'materia',
         uri: '/d/student/subjects'
     }
 ]
@@ -21,14 +25,15 @@ export const StudentCommands = (state) => {
     return [{
         command: 'Quiero ir a *',
         callback: (directory) => {
-            const found = studentCommandsDirectories.find(element => element.name === directory)
+            const found = studentCommandsDirectories.find(
+                element => element.name === directory || element.other === directory
+            )
             
             if(found){
                 speak({ text: 'Yendo a '+directory })
                 return state(redirectTo(found.uri))
             } else {
                 speak({ text: 'No se encontró el directorio '+directory })
-                //alert('No se encontró el directorio...')
             }
         }
     }]

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import { useSpeechSynthesis } from 'react-speech-kit'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import FullscreenIcon from '@material-ui/icons/Fullscreen'
@@ -98,6 +99,7 @@ const useStyles = makeStyles(theme => ({
 
 const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotifications }) => {
   const { logout } = useContext(AuthContext)
+  const { speak } = useSpeechSynthesis()
   const [anchorEl, setAnchorEl] = useState(null)
   const [searchExpanded, setSearchExpanded] = useState(false)
   const [statusSR, setStatusSR] = useState(false)
@@ -121,11 +123,13 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
     } else {
       if(statusSR){
         SpeechRecognition.stopListening()
-        alert('Desactivado mi rey. Vuelva pronto...')
+        speak({ text: 'Comandos de voz desactivados' })
+        //alert('Desactivado mi rey. Vuelva pronto...')
         return false
       } else {
         SpeechRecognition.startListening({ continuous: true, language: 'es-AR' })
-        alert('Activado. Empieza a hablar...')
+        speak({ text: 'Comandos de voz activados' })
+        //alert('Activado. Empieza a hablar...')
         return true
       }
     }
@@ -183,11 +187,13 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
           </IconButton>
         </Tooltip>
 
-        <IconButton color="inherit" onClick={handleNotificationToggle}>
-          <Badge badgeContent={5} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
+        <Tooltip title="Notificaciones">
+          <IconButton color="inherit" onClick={handleNotificationToggle}>
+            <Badge badgeContent={5} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+        </Tooltip>
 
         <IconButton
           aria-label="User Settings"
