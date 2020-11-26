@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import FullscreenIcon from '@material-ui/icons/Fullscreen'
@@ -25,10 +26,7 @@ import {
 } from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import { AuthContext } from './../../../context/auth'
-
-import { Redirect } from 'react-router-dom'
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-//import StudentCommands from './../../../utils/voice/StudentCommands'
+import { studentCommands } from './../../../utils/voice/StudentCommands'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -101,7 +99,8 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
   const { logout } = useContext(AuthContext)
   const [anchorEl, setAnchorEl] = useState(null)
   const [searchExpanded, setSearchExpanded] = useState(false)
-  const [statusSR, setStatusSR] = useState(false)  
+  const [statusSR, setStatusSR] = useState(false)
+  const [action, setAction] = useState('')
   const [iconSR, setIconSR] = useState(<MicOffOutlined/>)
   const classes = useStyles()
   const handleSettingdToggle = event => setAnchorEl(event.currentTarget)
@@ -115,39 +114,7 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
     toogleNotifications()
     if (searchExpanded) handleSearchExpandToggle()
   }
-
-
-
-  const [message, setMessage] = useState('')
-  const redirectTo = (uri) => <Redirect to={ uri }/>
-
-  const directories = [
-    {
-      name: 'inicio',
-      uri: '/d/student'
-    },
-    {
-      name: 'materias',
-      uri: '/d/student/subjects'
-    }
-  ]
-  const commands = [
-    {
-      command: 'Quiero redireccionar a *',
-      callback: (directory) => {
-        const found = directories.find(element => element.name === directory)
-
-        if(found){
-          return setMessage(redirectTo(found.uri))
-        } else {
-          alert('No se encontró el directorio...')
-        }
-      }
-    }
-  ]
-
-  useSpeechRecognition({ commands })
-
+  const commands = studentCommands(setAction)
   const enableSR = () => {
     if(!SpeechRecognition.browserSupportsSpeechRecognition()){
       alert('Tu navegador no soporta esto...')
@@ -165,6 +132,7 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
       }
     }
   }
+  useSpeechRecognition({ commands })
 
   return (
     <AppBar position="static" className={classes.appBar}>
@@ -183,12 +151,7 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
               <IconButton aria-label="Search" className={classes.searchIcon}>
                 <SearchIcon />
               </IconButton>
-              <input
-                className={classes.searchInput}
-                type="text"
-                placeholder="Search"
-                autoFocus={true}
-              />
+              <input className={classes.searchInput} type="text" placeholder="Search" autoFocus={true}/>
             </form>
           </div>
         </Hidden>
@@ -234,12 +197,7 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
           <MoreVertIcon />
         </IconButton>
 
-        <Menu
-          id="user-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleCloseMenu}
-        >
+        <Menu id="user-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseMenu}>
           <MenuItem onClick={handleCloseMenu}>
             <ListItemIcon>
               <SettingsIcon />
@@ -274,18 +232,13 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
                 <IconButton aria-label="Buscar" className={classes.searchIcon}>
                   <SearchIcon />
                 </IconButton>
-                <input
-                  className={classes.searchInput}
-                  type="text"
-                  placeholder="Buscar"
-                  autoFocus={true}
-                />
+                <input className={classes.searchInput} type="text" placeholder="Buscar" autoFocus={true}/>
               </form>
             </div>
           </Toolbar>
         </Collapse>
       </Hidden>
-      {message}
+      {action}
     </AppBar>
   )
 }
