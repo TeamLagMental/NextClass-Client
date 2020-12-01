@@ -59,14 +59,8 @@ const PostCard = ({ title, subtitle, text, image, imageHeight, avatar, link }) =
         </Typography>
       </CardContent>
       <CardActions className={classes.actions} disableSpacing>
-        <IconButton aria-label="Add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="Share">
-          <ShareIcon />
-        </IconButton>
         <span className="flexSpacer" />
-        <Button>More Info</Button>
+        <Button>Información</Button>
         <Link to={link}>
           <Button>Ir a la asignatura</Button>
         </Link>

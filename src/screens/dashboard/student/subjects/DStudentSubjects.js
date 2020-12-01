@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { Grid, Avatar } from '@material-ui/core'
 import { blue } from '@material-ui/core/colors'
 import { useQuery } from '@apollo/react-hooks'
-import { PostCard, Wrapper } from './../../../components/dashboard'
-import { STUDENT_SUBJECTS } from './../../../utils'
-import { AuthContext } from './../../../context/auth'
+import { PostCard, Wrapper, Loader1 } from './../../../../components/dashboard'
+import { STUDENT_SUBJECTS } from './../../../../utils'
+import { AuthContext } from './../../../../context/auth'
 
 function DStudentSubjects({userId}){
     const { user } = useContext(AuthContext)
@@ -12,7 +12,7 @@ function DStudentSubjects({userId}){
         variables: { userId: user.id }
     })
     
-    if (loading) return <p>loading...</p>
+    if (loading) return <Loader1/>
     if (error) return <p>ERROR</p>
     if (!data) return <p>No se encuentra registrado en ninguna asignatura</p>
       
@@ -39,23 +39,6 @@ function DStudentSubjects({userId}){
             </Grid>
         </Wrapper>
     )
-
-    /*
-    const { loading, error, data } = useQuery(SUBJECTS)
-  
-    if (loading) return <p>loading...</p>;
-    if (error) return <p>ERROR</p>;
-    if (!data) return <p>Not found</p>;
-    
-    return (
-        <div>
-            Datos aquí
-            {
-                //data.id
-            }
-        </div>
-    )
-    */
 }
 
 export default DStudentSubjects

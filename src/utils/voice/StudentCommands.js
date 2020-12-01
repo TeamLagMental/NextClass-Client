@@ -28,7 +28,7 @@ export const StudentCommands = (state) => {
             const found = studentCommandsDirectories.find(
                 element => element.name === directory || element.other === directory
             )
-            
+
             if(found){
                 speak({ text: 'Yendo a '+directory })
                 return state(redirectTo(found.uri))
@@ -36,5 +36,8 @@ export const StudentCommands = (state) => {
                 speak({ text: 'No se encontró el directorio '+directory })
             }
         }
+    },{
+        command: 'Cuantas materias me llevo',
+        callback: () => speak({ text: 'Te llevás todas las materias, mi rey' })
     }]
 }

@@ -9,8 +9,12 @@ import NewsCard from './Cards/NewsCard'
 import PostCard from './Cards/PostCard'
 import StatCard from './Cards/StatCard'
 
+import Loader1 from './Loading/Loader1'
+
 export {
     Header, Sidebar, NotificationCenter, Workspace, Wrapper,
     // Cards
-    NewsCard, PostCard, StatCard
+    NewsCard, PostCard, StatCard,
+    // Loaders
+    Loader1
 }

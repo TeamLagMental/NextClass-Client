@@ -124,12 +124,10 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
       if(statusSR){
         SpeechRecognition.stopListening()
         speak({ text: 'Comandos de voz desactivados' })
-        //alert('Desactivado mi rey. Vuelva pronto...')
         return false
       } else {
         SpeechRecognition.startListening({ continuous: true, language: 'es-AR' })
         speak({ text: 'Comandos de voz activados' })
-        //alert('Activado. Empieza a hablar...')
         return true
       }
     }

@@ -1,7 +1,9 @@
-import DStudentSubjects from './dashboard/student/DStudentSubjects'
-import DStudentSubject from './dashboard/student/DStudentSubject'
-import DStudentCareers from './dashboard/student/DStudentCareers'
+import DStudentSubjects from './dashboard/student/subjects/DStudentSubjects'
+import DStudentSubject from './dashboard/student/subjects/DStudentSubject'
+import DStudentCareers from './dashboard/student/careers/DStudentCareers'
 import Live from './live/Live'
+
+/* ------------ EXPORTS ------------ */
 
 // Generals
 export { Home } from './generals/Home'

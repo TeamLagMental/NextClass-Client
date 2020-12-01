@@ -2,17 +2,10 @@ import { Redirect } from 'react-router-dom'
 import { Home, Login, SelectType, Live } from './screens'
 import { DStudentLayout, DTeacherLayout, DAdminLayout } from "./layouts"
 
-import Dictaphone from './Voice'
-
 const items = [
     {
         path: "/",
         component: Home,
-        authRoute: false,
-        privateAccessRoute: false
-    },{
-        path: "/voice",
-        component: Dictaphone,
         authRoute: false,
         privateAccessRoute: false
     },{
