@@ -2,11 +2,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import { Wrapper, Loader1, PostCard2 } from './../../../../components/dashboard'
 import { Grid } from '@material-ui/core'
-
-
 function DStudentCareers(){
-    
-
     return (
       <Wrapper>
       <Grid>
@@ -16,6 +12,7 @@ function DStudentCareers(){
                         subtitle="Duracion: 3 años"
                         image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
                         imageHeight={250}
+                        text="Inscripciones Cerradas"
                         buttons={
                             <Button to="">Más Información</Button>
                         }
