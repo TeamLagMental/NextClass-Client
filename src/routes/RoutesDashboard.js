@@ -1,5 +1,5 @@
 import { Explore, Apps, ThreeDRotation } from '@material-ui/icons'
-import { DStudentHome, DStudentSubjects, DStudentSubject, DStudentCareers } from './../screens'
+import { DStudentHome, DStudentSubjects, DStudentSubject, DStudentCareers, DH} from './../screens'
 
 export const studentRoutes = {
     items: [
@@ -52,10 +52,26 @@ export const teacherRoutes = {
             name: 'Inicio',
             type: 'link',
             icon: Explore,
-            component: () => { return (<div>Teacher</div>) },
+            component: DH,
             render: true,
             rank: 2
-        }
+        },{
+            path: '/d/teacher/careers',
+            name: 'Carreras',
+            type: 'link',
+            icon: ThreeDRotation,
+            component: DStudentCareers,
+            render: true,
+            rank: 2
+        },{
+            path: '/d/teacher/classrooms',
+            name: 'Aulas',
+            type: 'link',
+            icon: Apps,
+            component: DStudentSubjects,
+            render: true,
+            rank: 2
+        },
     ]
 }
 
