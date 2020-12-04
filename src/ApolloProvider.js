@@ -15,7 +15,8 @@ const httpLink = createHttpLink({
 })
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:5000/graphql`,
+  //uri: `ws://localhost:5000/graphql`,
+  uri: `ws://sheltered-everglades-00923.herokuapp.com/graphql`,
   timeout: 30000,
   options: {
     reconnect: true
