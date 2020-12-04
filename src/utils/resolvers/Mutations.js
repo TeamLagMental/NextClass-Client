@@ -1,7 +1,5 @@
 import gql from 'graphql-tag'
 
-//import { gql } from '@apollo/client'
-
 export const LOGIN_USER = gql`
     mutation login($username: String!, $password: String!){
         login(username: $username, password: $password){
@@ -22,6 +20,7 @@ export const SUBJECTS = gql`
             id
             name
             description
+            image
             students {
                 id
                 status
@@ -38,6 +37,7 @@ export const STUDENT_SUBJECTS = gql`
             name
             description
             teacher
+            image
             createdAt
             students {
                 id
@@ -49,19 +49,13 @@ export const STUDENT_SUBJECTS = gql`
     }
 `
 
-export const SUBJECT = gql`
-    query getSubject($subjectId: ID!){
-        getSubject(subjectId: $subjectId){
+export const TEACHER = gql`
+    query getUser($userId: ID!){
+        getUser(userId: $userId){
             id
-            name
-            description
-            teacher
-            createdAt
-            students {
-                id
-                status
-                year
-            }
+            names
+            secondNames
+            lastNames
         }
         
     }
