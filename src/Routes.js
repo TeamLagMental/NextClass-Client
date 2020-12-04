@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom'
-import { Home, Login, SelectType, Live } from './screens'
+import { Home, Login, SelectType, Live, LiveHome} from './screens'
 import { DStudentLayout, DTeacherLayout, DAdminLayout } from "./layouts"
 
 const items = [
@@ -46,6 +46,12 @@ const items = [
         component: Live,
         authRoute: false,
         privateAccessRoute: true,
+        aId: 1
+    },{
+        path: "/videoconferencia",
+        component: LiveHome,
+        authRoute: false,
+        privateAccessRoute: false,
         aId: 1
     }
 ]

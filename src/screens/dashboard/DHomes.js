@@ -46,6 +46,7 @@ export const DH = () => {
                     />
                 </Grid>
                 <div className={classes.root}>
+                <Wrapper>
                   <Grid container spacing={3}>
                     <Grid item xs>
                     <Paper className={classes.paper}>
@@ -73,7 +74,7 @@ export const DH = () => {
                             </Avatar>
                         }
                         Comment={
-                            <Paper className={classes.paper}>
+                            <Wrapper >
                                 <Grid container wrap="nowrap" spacing={2}>
                                 <Grid item>
                                      <Avatar>R</Avatar>
@@ -85,10 +86,10 @@ export const DH = () => {
                                 </Typography>
                                 </Grid>
                                 </Grid>
-                            </Paper>
+                            </Wrapper>
                         }
                         buttons={
-                            <Paper className={classes.paper}>
+                            <Wrapper variant="outlined">
                                 <form className={classes.root} noValidate autoComplete="off">
                                 <Grid container wrap="nowrap" spacing={2}>
                                 <Grid item>
@@ -108,7 +109,7 @@ export const DH = () => {
                                 <Button to="">Comentar</Button>
                                 </Grid>
                                 </form>
-                            </Paper>
+                            </Wrapper>
                         }
                     />
                     </Grid>
@@ -142,6 +143,7 @@ export const DH = () => {
                     </Paper>
                     </Grid>
                   </Grid>
+                  </Wrapper>
                 </div>
             </Paper>
         </Grid>

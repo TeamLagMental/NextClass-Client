@@ -3,6 +3,7 @@ import DStudentSubject from './dashboard/student/subjects/DStudentSubject'
 import DStudentCareers from './dashboard/student/careers/DStudentCareers'
 
 import Live from './live/Live'
+import LiveHome from './live/LiveHome'
 
 /* ------------ EXPORTS ------------ */
 
@@ -23,4 +24,4 @@ export { DStudentSubjects, DStudentSubject, DStudentCareers}
 // Dashboard - Admin
 
 // Live
-export { Live }
+export { Live, LiveHome }

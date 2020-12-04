@@ -7,6 +7,40 @@ function DStudentCareers(){
       <Wrapper>
       <Grid>
                 <Grid container direction="row" justify="space-around" alignItems="flex-start" spacing={3} key="">
+                <Wrapper>
+                    <PostCard2 spacing={3}
+                        title="Nombre de la Carrera"
+                        subtitle="Duracion: 3 años"
+                        image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
+                        imageHeight={250}
+                        text="Inscripciones Cerradas"
+                        buttons={
+                            <Button to="">Más Información</Button>
+                        }
+                    /></Wrapper>
+                    <Wrapper>
+                    <PostCard2 spacing={3}
+                        title="Nombre de la Carrera"
+                        subtitle="Duracion: 3 años"
+                        image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
+                        imageHeight={250}
+                        text="Inscripciones Cerradas"
+                        buttons={
+                            <Button to="">Más Información</Button>
+                        }
+                    /></Wrapper>
+                    <Wrapper>
+                    <PostCard2 spacing={3}
+                        title="Nombre de la Carrera"
+                        subtitle="Duracion: 3 años"
+                        image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
+                        imageHeight={250}
+                        text="Inscripciones Cerradas"
+                        buttons={
+                            <Button to="">Más Información</Button>
+                        }
+                    /></Wrapper>
+                    <Wrapper>
                     <PostCard2 spacing={3}
                         title="Nombre de la Carrera"
                         subtitle="Duracion: 3 años"
@@ -17,6 +51,8 @@ function DStudentCareers(){
                             <Button to="">Más Información</Button>
                         }
                     />
+                    </Wrapper>
+                    <Wrapper>
                     <PostCard2 spacing={3}
                         title="Nombre de la Carrera"
                         subtitle="Duracion: 3 años"
@@ -27,6 +63,8 @@ function DStudentCareers(){
                             <Button to="">Más Información</Button>
                         }
                     />
+                    </Wrapper>
+                    <Wrapper>
                     <PostCard2 spacing={3}
                         title="Nombre de la Carrera"
                         subtitle="Duracion: 3 años"
@@ -36,37 +74,7 @@ function DStudentCareers(){
                         buttons={
                             <Button to="">Más Información</Button>
                         }
-                    />
-                    <PostCard2 spacing={3}
-                        title="Nombre de la Carrera"
-                        subtitle="Duracion: 3 años"
-                        image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
-                        imageHeight={250}
-                        text="Inscripciones Cerradas"
-                        buttons={
-                            <Button to="">Más Información</Button>
-                        }
-                    />
-                    <PostCard2 spacing={3}
-                        title="Nombre de la Carrera"
-                        subtitle="Duracion: 3 años"
-                        image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
-                        imageHeight={250}
-                        text="Inscripciones Cerradas"
-                        buttons={
-                            <Button to="">Más Información</Button>
-                        }
-                    />
-                    <PostCard2 spacing={3}
-                        title="Nombre de la Carrera"
-                        subtitle="Duracion: 3 años"
-                        image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
-                        imageHeight={250}
-                        text="Inscripciones Cerradas"
-                        buttons={
-                            <Button to="">Más Información</Button>
-                        }
-                    />
+                    /></Wrapper>
                 </Grid>
       </Grid>
   </Wrapper>
