@@ -6,7 +6,7 @@
   "license": "ISC",
   "description": "",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": "https://sheltered-everglades-00923.herokuapp.com/graphql",
   "dependencies": {
     "@apollo/react-hooks": "4.0.0",
     "@material-ui/core": "^4.11.0",
