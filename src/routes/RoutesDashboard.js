@@ -1,5 +1,9 @@
 import { Explore, Apps, ThreeDRotation } from '@material-ui/icons'
-import { DStudentHome, DStudentSubjects, DStudentSubject, DStudentCareers } from './../screens'
+import { DStudentHome, DStudentSubjects, DStudentCareers } from './../screens'
+
+import DSSubjectHome from './../screens/dashboard/student/subjects/homeContents/DSSubjectHome'
+import DSubjectTasks from './../screens/dashboard/student/subjects/tasksContents/DSubjectTasks'
+import DSubjectTask from './../screens/dashboard/student/subjects/tasksContents/DSubjectTask'
 
 export const studentRoutes = {
     items: [
@@ -24,22 +28,17 @@ export const studentRoutes = {
         },{
             path: '/d/student/subjects/:id',
             type: 'link',
-            component: DStudentSubject,
+            component: DSSubjectHome,
             noMenu: true
         },{
             path: '/d/student/subjects/:id/tasks',
             type: 'link',
-            component: DStudentSubject,
+            component: DSubjectTasks,
             noMenu: true
         },{
-            path: '/d/student/subjects/:id/progress',
+            path: '/d/student/subjects/:id/tasks/:taskID',
             type: 'link',
-            component: DStudentSubject,
-            noMenu: true
-        },{
-            path: '/d/student/subjects/:id/people',
-            type: 'link',
-            component: DStudentSubject,
+            component: DSubjectTask,
             noMenu: true
         }
     ]

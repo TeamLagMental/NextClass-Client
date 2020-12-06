@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react'
-import { useSubscription } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core/styles';
-
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -15,16 +13,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import TextField from '@material-ui/core/TextField';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-
-import { AuthContext } from './../../../../../context/auth'
-import { NEWPOSTS, GetUserInitials } from '../../../../../utils'
+import { AuthContext } from './../../../context/auth'
+import { GetUserInitials, GetUserNames, dateFormat } from './../../../utils'
 
 const useStyles = makeStyles((theme) => ({
     mio: {
@@ -33,32 +29,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function DSSubjectNewPosts(props){
-    const subjectID = props.subjectID
+function PostsCard(props){
+    const data = props.data
+    const key = props.k
     const { user } = useContext(AuthContext)
     const classes = useStyles()
     const [buttonState2, setButtonState2] = useState(true)
-    const { loading, error, data } = useSubscription(NEWPOSTS, {});
 
     const textFieldChange2 = () => {
-        const textFieldValue2 = document.getElementById('standard-full-width 2').value
+        const textFieldValue2 = document.getElementById('standard-full-width '+key).value
         textFieldValue2.length === 0 ? setButtonState2(true) : setButtonState2(false)
-    }
-
-    function dateFormat(param){
-        let date = new Date(param);
-        let year = date.getFullYear();
-        let month = date.getMonth()+1;
-        let dt = date.getDate();
-
-        if (dt < 10) {
-            dt = '0' + dt;
-        }
-        if (month < 10) {
-            month = '0' + month;
-        }
-
-        return dt+'-'+month+'-'+year
     }
 
     const [open, setOpen] = useState(false)
@@ -78,15 +58,15 @@ function DSSubjectNewPosts(props){
 
     function handleListKeyDown(event) {
         if (event.key === 'Tab') {
-        event.preventDefault()
-        setOpen(false)
+            event.preventDefault()
+            setOpen(false)
         }
     }
 
     const prevOpen = useRef(open)
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
-        anchorRef.current.focus()
+            anchorRef.current.focus()
         }
 
         prevOpen.current = open
@@ -142,69 +122,57 @@ function DSSubjectNewPosts(props){
         )
     }
 
-    function myRender(param){
-        return (
-            <Card className="mb-xs">
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                            <GetUserInitials userId={param.user} />
-                        </Avatar>
-                    }
-                    action={
-                        options(param)
-                    }
-                    title="Shrimp and Chorizo Paella"
-                    subheader={ dateFormat(param.createdAt) }
-                />
-                <Divider/>
-                <CardContent>
-                    <Typography variant="body2" component="p">
-                        {param.body}
-                    </Typography>
-                </CardContent>
-                <Divider/>
-
+    return (
+        <Card className="mb-xs">
+            <CardHeader
+                avatar={
+                    <Avatar aria-label="recipe">
+                        <GetUserInitials userId={data.user} />
+                    </Avatar>
+                }
+                action={
+                    options(data)
+                }
+                title={(<GetUserNames userID={data.user} />)}
+                subheader={ dateFormat(data.createdAt) }
+            />
+            <Divider/>
+            <CardContent>
+                <Typography variant="body2" component="p">
+                    {data.body}
+                </Typography>
+            </CardContent>
+            <Divider/>
+            <ListItem>
+                <ListItemAvatar>
+                    <Avatar aria-label="recipe">
+                        <GetUserInitials userId={user.id} />
+                    </Avatar>
+                </ListItemAvatar>
                 <ListItem>
-                    <ListItemAvatar>
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                            <GetUserInitials userId={user.id} />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItem>
-                        <TextField
-                            id="standard-full-width 2"
-                            label="Realizar un comentario..."
-                            multiline
-                            rows={1}
-                            defaultValue=""
-                            variant="outlined"
-                            fullWidth
-                            margin="normal"
-                            style={{ margin: 1 }}
-                            onChange={textFieldChange2}
-                        />
-                        <Divider />
-                        <CardActions>
-                            <span className="flexSpacer" />
-                            <Button variant="contained" color="primary" disabled={buttonState2} >
-                                Publicar
-                            </Button>
-                        </CardActions>
-                        
-                    </ListItem>
+                    <TextField
+                        id={'standard-full-width '+key}
+                        label="Realizar un comentario..."
+                        multiline
+                        rows={1}
+                        defaultValue=""
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        style={{ margin: 1 }}
+                        onChange={textFieldChange2}
+                    />
+                    <Divider />
+                    <CardActions>
+                        <span className="flexSpacer" />
+                        <Button variant="contained" color="primary" disabled={buttonState2} >
+                            Publicar
+                        </Button>
+                    </CardActions>
                 </ListItem>
-
-            </Card>
-        )
-    }
-
-    if (loading) return <></>
-    if (error) return <div>ERROR INESPERADO</div>
-    if(data){
-        const postData = data.newPost
-        return postData.subjectID === subjectID ? myRender(postData) : <></>
-    }
+            </ListItem>
+        </Card>
+    )
 }
 
-export default DSSubjectNewPosts
+export default PostsCard
