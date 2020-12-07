@@ -1,5 +1,5 @@
 import { Explore, Apps, ThreeDRotation } from '@material-ui/icons'
-import { DStudentHome, DStudentSubjects, DStudentSubject, DStudentCareers, DH} from './../screens'
+import { DStudentSubjects, DStudentSubject, DStudentCareers, DH, DStudentCareer, DUsers} from './../screens'
 
 export const studentRoutes = {
     items: [
@@ -8,13 +8,18 @@ export const studentRoutes = {
             name: 'Inicio',
             type: 'link',
             icon: Explore,
-            component: DStudentHome
+            component: DH,
         },{
             path: '/d/student/careers',
             name: 'Carreras',
             type: 'link',
             icon: ThreeDRotation,
             component: DStudentCareers
+        },{
+            path: '/d/student/career',
+            type: 'link',
+            component: DStudentCareer,
+            noMenu: true
         },{
             path: '/d/student/subjects',
             name: 'Materias',
@@ -82,9 +87,33 @@ export const adminRoutes = {
             name: 'Inicio',
             type: 'link',
             icon: Explore,
-            component: () => { return (<div>Admin</div>) },
+            component: DH,
             render: true,
             rank: 3
-        }
+        },{
+            path: '/d/admin/careers',
+            name: 'Carreras',
+            type: 'link',
+            icon: ThreeDRotation,
+            component: DStudentCareers,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/career',
+            name: 'Carreras',
+            type: 'link',
+            icon: ThreeDRotation,
+            component: DStudentCareer,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/users',
+            name: 'Usuarios',
+            type: 'link',
+            icon: ThreeDRotation,
+            component: DUsers,
+            render: true,
+            rank: 3
+        },
     ]
 }

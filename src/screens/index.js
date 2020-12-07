@@ -1,7 +1,9 @@
 import DStudentSubjects from './dashboard/student/subjects/DStudentSubjects'
 import DStudentSubject from './dashboard/student/subjects/DStudentSubject'
 import DStudentCareers from './dashboard/student/careers/DStudentCareers'
-
+import DStudentCareer from './dashboard/student/careers/DStudentCareer'
+import DAdminCareers from './dashboard/DAdminCareers'
+import DUsers from './dashboard/DUsers'
 import Live from './live/Live'
 import LiveHome from './live/LiveHome'
 
@@ -17,11 +19,11 @@ export { SelectType } from './dashboard/SelectType'
 
 // Dashboard - Student
 export { DStudentHome } from './dashboard/student/DStudentHome'
-export { DStudentSubjects, DStudentSubject, DStudentCareers}
+export { DStudentSubjects, DStudentSubject, DStudentCareers, DStudentCareer}
 
 // Dashboard - Teacher
 
 // Dashboard - Admin
-
+export {DAdminCareers, DUsers}
 // Live
 export { Live, LiveHome }

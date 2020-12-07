@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, Avatar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { Wrapper, PostCard2, Comment} from './../../components/dashboard'
+import { Wrapper, PostCard2} from './../../components/dashboard'
 import Button from '@material-ui/core/Button'
 import { blue } from '@material-ui/core/colors'
 import Typography from '@material-ui/core/Typography'
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export const DH = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState('Controlled');
-
+    console.log(value)
     const handleChange = (event) => {
     setValue(event.target.value)
     }
@@ -42,7 +42,16 @@ export const DH = () => {
                         title="Instituto Politecnico Formosa- IPF"
                         subtitle="asadsad"
                         image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
-                        imageHeight={250}
+                        imageHeight={270}
+                        Comment={
+                            <Grid
+                            container
+                            direction="row"
+                            justify="flex-end"
+                            alignItems="flex-start">
+                                <Button >Cambiar imagen</Button>
+                            </Grid>
+                        }
                     />
                 </Grid>
                 <div className={classes.root}>
@@ -64,6 +73,7 @@ export const DH = () => {
                     </Paper>
                     </Grid>
                     <Grid item xs={8}>
+
                     <PostCard2 spacing={3}
                         title="Bienvenidos al IPF"
                         subtitle="Rolon Lautaro"
@@ -93,7 +103,7 @@ export const DH = () => {
                                 <form className={classes.root} noValidate autoComplete="off">
                                 <Grid container wrap="nowrap" spacing={2}>
                                 <Grid item>
-                                     <Avatar>R</Avatar>
+                                    <Avatar>R</Avatar>
                                 </Grid>
                                 <Grid item xs>
                                 <TextField

@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import { Wrapper, Loader1, PostCard2 } from './../../../../components/dashboard'
 import { Grid } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 function DStudentCareers(){
     return (
       <Wrapper>
@@ -15,7 +16,9 @@ function DStudentCareers(){
                         imageHeight={250}
                         text="Inscripciones Cerradas"
                         buttons={
-                            <Button to="">Más Información</Button>
+                            <Link to="./Career">
+                            <Button >Más Información</Button>
+                            </Link>
                         }
                     /></Wrapper>
                     <Wrapper>
@@ -26,7 +29,9 @@ function DStudentCareers(){
                         imageHeight={250}
                         text="Inscripciones Cerradas"
                         buttons={
-                            <Button to="">Más Información</Button>
+                            <Link to="./Career">
+                            <Button >Más Información</Button>
+                            </Link>
                         }
                     /></Wrapper>
                     <Wrapper>
@@ -37,7 +42,9 @@ function DStudentCareers(){
                         imageHeight={250}
                         text="Inscripciones Cerradas"
                         buttons={
-                            <Button to="">Más Información</Button>
+                            <Link to="./Career">
+                            <Button >Más Información</Button>
+                            </Link>
                         }
                     /></Wrapper>
                     <Wrapper>
@@ -48,7 +55,9 @@ function DStudentCareers(){
                         imageHeight={250}
                         text="Inscripciones Cerradas"
                         buttons={
-                            <Button to="">Más Información</Button>
+                            <Link to="./Career">
+                            <Button >Más Información</Button>
+                            </Link>
                         }
                     />
                     </Wrapper>
@@ -60,7 +69,9 @@ function DStudentCareers(){
                         imageHeight={250}
                         text="Inscripciones Cerradas"
                         buttons={
-                            <Button to="">Más Información</Button>
+                            <Link to="./Career">
+                            <Button >Más Información</Button>
+                            </Link>
                         }
                     />
                     </Wrapper>
@@ -72,7 +83,9 @@ function DStudentCareers(){
                         imageHeight={250}
                         text="Inscripciones Cerradas"
                         buttons={
-                            <Button to="">Más Información</Button>
+                            <Link to="./Career">
+                            <Button >Más Información</Button>
+                            </Link>
                         }
                     /></Wrapper>
                 </Grid>
