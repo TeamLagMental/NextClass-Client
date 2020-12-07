@@ -1,6 +1,8 @@
 import { Redirect } from 'react-router-dom'
 import { Home, Login, SelectType, Live, LiveHome} from './screens'
 import { DStudentLayout, DTeacherLayout, DAdminLayout } from "./layouts"
+import lol from './pages/App'
+import Pdf from './pages/Pdf'
 
 const items = [
     {
@@ -53,6 +55,19 @@ const items = [
         authRoute: false,
         privateAccessRoute: false,
         aId: 1
+    }
+    ,{
+        path: "/pdf",
+        component: lol,
+        authRoute: false,
+        privateAccessRoute: false,
+        aId: 1,
+    },{
+        path: "/pdf/pdf",
+        component: Pdf,
+        authRoute: false,
+        privateAccessRoute: false,
+        aId: 1,
     }
 ]
 

@@ -1,12 +1,12 @@
 
-/*import { Wrapper,} from './../../components/dashboard'
+import { Wrapper,} from './../../components/dashboard'
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Paper } from '@material-ui/core';
-*/
+
 import * as React from 'react';
 import { XGrid } from '@material-ui/x-grid';
 
@@ -19,11 +19,21 @@ const rows = [
     FechaNacimiento: '30-08-2000',
     Edad: 20,
     FaltaDocumento: true,
+  },{ 
+    id:2,
+    Nombres: 'Roberto Eduardo',
+    Apellido: 'Silva', 
+    DNI: 42758766,
+    FechaNacimiento: '30-08-2000',
+    Edad: 20,
+    FaltaDocumento: true,
   },
 ];
 
 export default function  DUsers() {
   return (
+    <Wrapper>
+    <Paper>
     <div style={{ height: 250, width: '100%' }}>
       <XGrid
         columns={[
@@ -34,10 +44,14 @@ export default function  DUsers() {
           { field: 'FechaNacimiento' },
           { field: 'Edad', resizable: false },
           { field: 'FaltaDocumento' },
+          { field: 'Eliminar' },
+          { field: 'Add' },
         ]}
         rows={rows}
       />
     </div>
+    </Paper>
+    </Wrapper>
   );
 }
 /*function DUsersas() {
