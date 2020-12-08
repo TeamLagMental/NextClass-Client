@@ -36,7 +36,6 @@ export const DH = () => {
     return (
     <Wrapper>
         <Grid  item xs={12}>
-            <Paper className={classes.paper}>
                 <Grid  item xs={12}>
                     <PostCard2 spacing={3}
                         title="Instituto Politecnico Formosa- IPF"
@@ -58,23 +57,53 @@ export const DH = () => {
                 <Wrapper>
                   <Grid container spacing={3}>
                     <Grid item xs>
-                    <Paper className={classes.paper}>
-                    <Typography variant="button" display="block" gutterBottom>Proxima Clase</Typography>
-                    <Grid container wrap="nowrap" spacing={2}>
-                        <Grid item xs>
-                            Matematicas- Ahora
-                        </Grid>
+                        <Paper className={classes.paper}>
+                            <Typography variant="button" display="block" gutterBottom>Proxima Clase</Typography>
+                            <Grid container wrap="nowrap" spacing={2}>
+                                <Grid item xs>
+                                    Matematicas- Ahora
+                                </Grid>
+                            </Grid>
+                            <Grid container wrap="nowrap" spacing={2}>
+                                <Grid item xs>
+                                    Lengua- Mañana
+                                </Grid>
+                            </Grid>
+                            <Wrapper>
+                            <Grid container wrap="nowrap" spacing={2}>
+                                <Typography variant="button" display="block" gutterBottom>Profesores</Typography>
+                            </Grid>
+                            </Wrapper>
+                            <Grid container wrap="nowrap" spacing={2}>
+                                <Grid item>
+                                    <Avatar>SR</Avatar>
+                                </Grid>
+                                <Grid item xs>
+                                    Silva Roberto
+                                </Grid>
+                            </Grid>
+                            <Grid container wrap="nowrap" spacing={2}>
+                                <Grid item>
+                                    <Avatar>RL</Avatar>
+                                </Grid>
+                                <Grid item xs>
+                                    Rolon Lautaro
+                                </Grid>
+                            </Grid>
+                            <Grid container wrap="nowrap" spacing={2}>
+                                <Grid item>
+                                    <Avatar>DF</Avatar>
+                                </Grid>
+                                <Grid item xs>
+                                    Ditter Federico
+                                </Grid>
+                            </Grid>
+                        </Paper>
                     </Grid>
-                    <Grid container wrap="nowrap" spacing={2}>
-                        <Grid item xs>
-                            Lengua- Mañana
-                        </Grid>
-                    </Grid>
-                    </Paper>
-                    </Grid>
-                    <Grid item xs={8}>
+                  
+                    <Grid item xs={10} >
 
-                    <PostCard2 spacing={3}
+                    <PostCard2 spacing={12}
                         title="Bienvenidos al IPF"
                         subtitle="Rolon Lautaro"
                         text="EL Instituto le da la Bienvenida a la nueva Vida del Estudiante Terciario"
@@ -123,39 +152,9 @@ export const DH = () => {
                         }
                     />
                     </Grid>
-                    <Grid item xs>
-                    <Paper className={classes.paper}>
-                    <Typography variant="button" display="block" gutterBottom>Profesores</Typography>
-                    <Grid container wrap="nowrap" spacing={2}>
-                        <Grid item>
-                            <Avatar>SR</Avatar>
-                        </Grid>
-                        <Grid item xs>
-                            Silva Roberto
-                        </Grid>
-                    </Grid>
-                    <Grid container wrap="nowrap" spacing={2}>
-                        <Grid item>
-                            <Avatar>RL</Avatar>
-                        </Grid>
-                        <Grid item xs>
-                            Rolon Lautaro
-                        </Grid>
-                    </Grid>
-                    <Grid container wrap="nowrap" spacing={2}>
-                        <Grid item>
-                            <Avatar>DF</Avatar>
-                        </Grid>
-                        <Grid item xs>
-                            Ditter Federico
-                        </Grid>
-                    </Grid>
-                    </Paper>
-                    </Grid>
                   </Grid>
                   </Wrapper>
                 </div>
-            </Paper>
         </Grid>
     </Wrapper>
     )

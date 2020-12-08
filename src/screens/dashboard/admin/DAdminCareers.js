@@ -1,5 +1,5 @@
 import React from 'react';
-import DStudentCareers from './student/careers/DStudentCareers'
+import DStudentCareers from '../student/careers/DStudentCareers'
 
 const DAdminCareers = () => {
     return (
