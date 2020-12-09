@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { Wrapper, Loader1, PostCard2 } from './../../../../components/dashboard'
+import { Wrapper } from './../../../../components/dashboard'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -73,102 +73,99 @@ const useStyles = makeStyles((theme) => ({
 
 
 function DStudentCareer(){
-    const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-  
-    const handleChange = (event, newValue) => {
-      setValue(newValue);}
-    return (
-      <Wrapper>
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  }
+
+  return(
+    <Wrapper>
+      <Grid  item xs={12}>
+        <Paper className={classes.paper}>
           <Grid  item xs={12}>
-            <Paper className={classes.paper}>
-                <Grid  item xs={12}>
-                    
-                        
-                        <CardMedia
-                            image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
-
-                            title="Nombre de la Carrera"
-                            className={classes.media}
-                            style={{ paddingTop: 270 }}
-                        />
-                        <Grid
-                            container
-                            direction="row"
-                            justify="flex-end"
-                            alignItems="flex-start">
-                                <Button >Cambiar imagen</Button>
-                        </Grid>
-                    
-                    <Grid>
-                        <Typography variant="h3" gutterBottom>
-                        Nombre de la Carrera
-                        </Typography>
-                    </Grid>
-                    <Grid>
-                        <Typography variant="h4" gutterBottom>
-                        Descripcion de la Carrera:
-                        </Typography>
-                        <Typography>
-                            azwsexrdctfvgybuhnjimko,pl.ñureeeeeeeeeeeeeehk jas geñfuyi añwea hgdu waszdai ña4 asdfubefiu awa,d añouirfvhao9´dfcioñab añsudvba kfgbañioeugfi agk  ugaieugfvaer asdfjasdklfh dfkh oadhfasd sdflknasdjf sdkfsknfg lasdkfasldfhadhflasd alksdjfsdf
-                        </Typography>
-                    </Grid>
-                    <Typography variant="h1" component="h2" gutterBottom></Typography>
-                    <Grid>
-                        <Typography variant="h4" gutterBottom>
-                            Requisitos de Admision:
-                        </Typography>
-                        <ListItem>
-                        <ListItemText
-                         primary="Ser Oro V en LOl o superior"
-                            />
-                        </ListItem>
-                        <ListItem>
-                        <ListItemText
-                         primary="parecer manco ;V"
-                            />
-                        </ListItem>
-                    </Grid>
-                    <Grid>
-                    <Typography variant="h4" gutterBottom>
-                            Plan de Estudios:
-                    </Typography>
-                    <div className={classes.root}>
-                    <AppBar position="static">
-                        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="Primer Año" {...a11yProps(0)} />
-                        <Tab label="Segundo Año" {...a11yProps(1)} />
-                        <Tab label="Tercer Año" {...a11yProps(2)} />
-                        </Tabs>
-                    </AppBar>
-                    <TabPanel value={value} index={0}>
-                    <ListItem>
-                        <ListItemText
-                         primary="mate 1"
-                            />
-                        </ListItem>
-                        <ListItem>
-                        <ListItemText
-                         primary="lengua 3"
-                            />
-                        </ListItem>
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        Lengua 3
-                    </TabPanel>
-                    <TabPanel value={value} index={2}>
-                        Fisica termonuclear cuantica
-                    </TabPanel>
-                    </div>
-                    </Grid>
-                </Grid>
-            </Paper>
-        </Grid>
-
-
-
-      </Wrapper>
-    )
+            <CardMedia
+              image={`${process.env.PUBLIC_URL}/static/images/unsplash/2.jpg`}
+              title="Nombre de la Carrera"
+              className={classes.media}
+              style={{ paddingTop: 270 }}
+            />
+            <Grid
+              container
+              direction="row"
+              justify="flex-end"
+              alignItems="flex-start">
+              <Button >
+                Cambiar imagen
+              </Button>
+            </Grid>
+            <Grid>
+              <Typography variant="h3" gutterBottom>
+                Nombre de la Carrera
+              </Typography>
+            </Grid>
+            <Grid>
+              <Typography variant="h4" gutterBottom>
+                Descripcion de la Carrera:
+              </Typography>
+              <Typography>
+                azwsexrdctfvgybuhnjimko,pl.ñureeeeeeeeeeeeeehk jas geñfuyi añwea hgdu waszdai ña4 asdfubefiu awa,d añouirfvhao9´dfcioñab añsudvba kfgbañioeugfi agk  ugaieugfvaer asdfjasdklfh dfkh oadhfasd sdflknasdjf sdkfsknfg lasdkfasldfhadhflasd alksdjfsdf
+              </Typography>
+            </Grid>
+              <Typography variant="h1" component="h2" gutterBottom></Typography>
+            <Grid>
+              <Typography variant="h4" gutterBottom>
+                Requisitos de Admision:
+              </Typography>
+              <ListItem>
+                <ListItemText
+                  primary="Ser Oro V en LOl o superior"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="parecer manco ;V"
+                />
+              </ListItem>
+            </Grid>
+              <Grid>
+              <Typography variant="h4" gutterBottom>
+                Plan de Estudios:
+              </Typography>
+              <div className={classes.root}>
+                <AppBar position="static">
+                  <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                    <Tab label="Primer Año" {...a11yProps(0)} />
+                    <Tab label="Segundo Año" {...a11yProps(1)} />
+                    <Tab label="Tercer Año" {...a11yProps(2)} />
+                  </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={0}>
+                  <ListItem>
+                    <ListItemText
+                      primary="mate 1"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="lengua 3"
+                    />
+                  </ListItem>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  Lengua 3
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                  Fisica termonuclear cuantica
+                </TabPanel>
+              </div>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+    </Wrapper>
+  )
 }
 
 export default DStudentCareer

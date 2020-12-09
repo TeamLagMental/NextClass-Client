@@ -7,6 +7,8 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import { Wrapper} from './../../../components/dashboard'
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,10 +30,7 @@ const useStyles = makeStyles(theme => ({
       right: 0,
       width: '40%',
       height: '1.5em',
-      background: `linear-gradient(to right, ${fade(
-        theme.palette.background.paper,
-        0
-      )}, ${theme.palette.background.paper} 50%)`
+      
     }
   }
 }));
@@ -64,11 +63,13 @@ const PostCard2 = ({ title, subtitle, text, image, imageHeight, avatar, buttons,
         className={classes.media}
         style={{ paddingTop: imageHeight }}
       />
-      <CardContent>
-        <Typography component="p" className={classes.clamp}>
-          {text}
-        </Typography>
-      </CardContent>
+      <Wrapper>
+      <Grid container wrap="nowrap" spacing={2}>
+          <Grid item xs>
+            <Typography>{text}</Typography>
+          </Grid>
+        </Grid>
+        </Wrapper>
       {Comment}
       {buttons}
     </Card>
