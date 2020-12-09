@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: theme.zIndex.drawer + 100,
     [theme.breakpoints.down('sm')]: {
       position: 'fixed'
-    }
+    },
   },
   toolBar: {
     paddingLeft: theme.spacing(1) / 2,

@@ -20,7 +20,7 @@ function SubjectTabs(props){
             <Tabs>
                 <Link to={'/d/student/subjects/'+subjectID}><Tab label="Inicio"/></Link>
                 <Link to={'/d/student/subjects/'+subjectID+'/tasks'}><Tab label="Trabajos de clase"/></Link>
-                <Tab label="Otros" />
+                <Link to={'/d/student/subjects/'+subjectID+'/lessons'}><Tab label="Clases"/></Link>
                 <Tab label="Live" />
             </Tabs>
         </Paper>

@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom'
-import { Home, Login, SelectType, Live } from './screens'
+import { Home, Login, SelectType, HomeLive, Live } from './screens'
 import { DStudentLayout, DTeacherLayout, DAdminLayout } from "./layouts"
 
 import HomeA from './screens/live/Home'
@@ -49,8 +49,8 @@ const items = [
         authRoute: false,
         privateAccessRoute: false
     },{
-        path: "/live/:url",
-        component: Live,
+        path: "/live/:subjectID/l/:lessonID",
+        component: HomeLive,
         authRoute: false,
         privateAccessRoute: false
     }

@@ -17,10 +17,11 @@ export { SETPOST } from './resolvers/Post/PostMutation'
 
 // QUERYS
 export { CAREER, CAREERS } from './resolvers/Career/CareerQuery'
-export { GETSUBJECT } from './resolvers/Subject/SubjectQuery'
+export { GETSUBJECT, GETSUBJECTSUSER } from './resolvers/Subject/SubjectQuery'
 export { GETUSER, GETUSERSUBJECTS } from './resolvers/User/UserQuery'
 export { GETPOSTS, GETSUBJECTPOSTS } from './resolvers/Post/PostQuery'
 export { GETTASK, GETTASKS, GETSUBJECTTASKS } from './resolvers/Task/TaskQuery'
+export { GETLESSONS, GETSUBJECTLESSONS } from './resolvers/Lesson/LessonQuery'
 
 // SUBSCRIPTIONS
 export { NEWPOSTS } from './resolvers/Post/PostSubscriptions'

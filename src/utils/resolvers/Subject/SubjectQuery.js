@@ -15,3 +15,19 @@ export const GETSUBJECT = gql`
         }
     }
 `
+
+export const GETSUBJECTSUSER = gql`
+    query getSubjectsUser($userId: ID!){
+        getSubjectsUser(userId: $userId){
+            id
+            name
+            description
+            careers{
+                id
+            }
+            teacher
+            image
+            createdAt
+        }
+    }
+`

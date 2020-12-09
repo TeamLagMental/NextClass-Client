@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
     display: "flex",
     flexDirection: "row",
-    flexGrow: 1
+    flexGrow: 1,
   },
   speedDial: {
     position: "absolute",

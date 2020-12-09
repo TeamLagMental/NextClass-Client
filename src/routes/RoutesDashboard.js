@@ -1,9 +1,10 @@
-import { Explore, Apps, ThreeDRotation } from '@material-ui/icons'
-import { DStudentHome, DStudentSubjects, DStudentCareers } from './../screens'
+import { Explore, Apps, ThreeDRotation, EventNote } from '@material-ui/icons'
+import { DStudentHome, DStudentSubjects, DStudentCareers, DStudentCalendar } from './../screens'
 
 import DSSubjectHome from './../screens/dashboard/student/subjects/homeContents/DSSubjectHome'
 import DSubjectTasks from './../screens/dashboard/student/subjects/tasksContents/DSubjectTasks'
 import DSubjectTask from './../screens/dashboard/student/subjects/tasksContents/DSubjectTask'
+import DSubjectLessons from './../screens/dashboard/student/subjects/lessonsContents/DSubjectLessons'
 
 export const studentRoutes = {
     items: [
@@ -40,6 +41,31 @@ export const studentRoutes = {
             type: 'link',
             component: DSubjectTask,
             noMenu: true
+        },{
+            path: '/d/student/subjects/:id/lessons',
+            type: 'link',
+            component: DSubjectLessons,
+            noMenu: true
+        },{
+            path: '/d/student/calendars',
+            name: 'Calendarios',
+            type: 'submenu',
+            icon: EventNote,
+            children: [
+                {
+                    path: '/lessons-calendar',
+                    name: 'Calendario de clases',
+                    component: DStudentCalendar
+                },{
+                    path: '/lessons-list',
+                    name: 'Lista de clases',
+                    component: () => { return (<div>Lista de clases</div>) }
+                },{
+                    path: '/events',
+                    name: 'Eventos',
+                    component: () => { return (<div>Eventos</div>) }
+                }
+            ]
         }
     ]
 }

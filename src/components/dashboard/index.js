@@ -18,6 +18,9 @@ import SubjectTabs from './Tabs/SubjectTabs'
 // Acordion
 import TasksAccordion from './Accordion/TasksAccordion'
 
+// Calendar
+import CalendarApp from './Calendar/Calendar'
+
 import Loader1 from './Loading/Loader1'
 
 export {
@@ -29,5 +32,7 @@ export {
     // Tabs
     TasksTab, SubjectTabs,
     // Acordion
-    TasksAccordion
+    TasksAccordion,
+    // Calendar
+    CalendarApp
 }

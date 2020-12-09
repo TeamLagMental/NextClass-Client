@@ -6,6 +6,9 @@ export const LOGIN_USER = gql`
             id
             email
             username
+            names
+            secondNames
+            lastNames
             createdAt
             access_id
             ranks

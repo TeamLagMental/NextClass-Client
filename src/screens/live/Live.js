@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
-import faker from "faker"
-
 import {IconButton, Badge, Input, Button} from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam'
 import VideocamOffIcon from '@material-ui/icons/VideocamOff'
@@ -12,11 +10,70 @@ import StopScreenShareIcon from '@material-ui/icons/StopScreenShare'
 import CallEndIcon from '@material-ui/icons/CallEnd'
 import ChatIcon from '@material-ui/icons/Chat'
 
-//import { message } from 'antd'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardMedia from '@material-ui/core/CardMedia';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { Wrapper } from './../../components/dashboard'
 
 import { Row } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
 import "./Video.css"
+
+const useStyles = makeStyles((theme) => ({
+	expand: {
+	  transform: 'rotate(0deg)',
+	  marginLeft: 'auto',
+	  transition: theme.transitions.create('transform', {
+		duration: theme.transitions.duration.shortest,
+	  }),
+	},
+	myWrapper: {
+		height: "100vh",
+        marginTop: "300px"
+	},
+	content: {
+		maxWidth: "600px",
+		width: "100%",
+		margin: "auto",
+		marginTop: "70px"
+	}
+}))
+
+const Home = (props) => {
+	const classes = useStyles();
+	const enableAudioButton = props.enableAudioButton
+	const onClickAudio = props.onClickAudio
+	const enableVideoButton = props.enableVideoButton
+	const onClickVideo = props.onClickVideo
+	const onClickConnect = props.onClickConnect
+	const videoRef = props.videoRef
+
+	return (
+		<Wrapper className={classes.myWrapper}>
+			<Card className={classes.content}>
+				<CardMedia>
+					<video id="my-video" ref={videoRef} autoPlay muted style={{
+						borderStyle: "solid",borderColor: "#bdbdbd",objectFit: "fill", width: "100%",height: "70%"}
+					}>
+					</video>
+				</CardMedia>
+				<CardActions disableSpacing>
+					<IconButton onClick={onClickAudio}>
+						{enableAudioButton}
+					</IconButton>
+					<IconButton onClick={onClickVideo}>
+						{enableVideoButton}
+					</IconButton>
+					<Button className={classes.expand} variant="contained" color="primary" onClick={onClickConnect}>
+						Conectarse
+					</Button>
+				</CardActions>
+			</Card>
+		</Wrapper>
+	)
+}
 
 const server_url = process.env.NODE_ENV === 'production' ? 'https://video.sebastienbiollo.com' : "http://localhost:5000"
 
@@ -50,7 +107,8 @@ class Live extends Component {
 			message: "",
 			newmessages: 0,
 			askForUsername: true,
-            username: faker.internet.userName(),
+			username: this.props.username,
+			waiting: true
 		}
 		connections = {}
 
@@ -96,6 +154,7 @@ class Live extends Component {
 	}
 
 	getUserMedia = () => {
+		const myVideo = this.state.video ? 'ggeast' : 'No prro'
 		if ((this.state.video && this.videoAvailable) || (this.state.audio && this.audioAvailable)) {
 			navigator.mediaDevices.getUserMedia({ video: this.state.video, audio: this.state.audio })
 				.then(this.getUserMediaSuccess)
@@ -406,7 +465,7 @@ class Live extends Component {
     }
     
 
-    connect = () => this.setState({ askForUsername: false }, () => this.getMedia())
+    connect = () => this.setState({ waiting: false }, () => this.getMedia())
 
 	isChrome = function () {
 		let userAgent = (navigator && (navigator.userAgent || '')).toLowerCase()
@@ -418,8 +477,7 @@ class Live extends Component {
     }
 
 	render() {
-        console.log(this.state.audio)
-        console.log(this.state.video)
+		
 		if(this.isChrome() === false){
 			return (
 				<div style={{background: "white", width: "30%", height: "auto", padding: "20px", minWidth: "400px",
@@ -428,29 +486,22 @@ class Live extends Component {
 				</div>
 			)
 		}
+
 		return (
 			<div>
-                {this.state.askForUsername === true ?
-					<div>
-						<div style={{background: "white", width: "30%", height: "auto", padding: "20px", minWidth: "400px",
-								textAlign: "center", margin: "auto", marginTop: "50px", justifyContent: "center"}}>
-							<p style={{ margin: 0, fontWeight: "bold", paddingRight: "50px" }}>Set your username</p>
-							<Input placeholder="Username" value={this.state.username} onChange={e => this.handleUsername(e)} />
-							<Button variant="contained" color="primary" onClick={this.connect} style={{ margin: "20px" }}>Connect</Button>
-						</div>
+				{ this.state.waiting ?
+					<>
 
-                        <IconButton style={{ color: "#424242" }} onClick={this.handleVideo}>
-							{(this.state.video === true) ? <VideocamIcon /> : <VideocamOffIcon />}
-						</IconButton>
-                        <IconButton style={{ color: "#424242" }} onClick={this.handleAudio}>
-								{this.state.audio === false ? <MicOffIcon /> : <MicIcon />}
-						</IconButton>
-
-						<div style={{ justifyContent: "center", textAlign: "center", paddingTop: "40px" }}>
-							<video id="my-video" ref={this.localVideoref} autoPlay muted style={{
-								borderStyle: "solid",borderColor: "#bdbdbd",objectFit: "fill",width: "60%",height: "30%"}}></video>
-						</div>
-					</div>
+					<Home
+						enableAudioButton={this.state.audio === false ? <MicOffIcon /> : <MicIcon />}
+						onClickAudio={this.handleAudio}
+						enableVideoButton={(this.state.video === true) ? <VideocamIcon /> : <VideocamOffIcon />}
+						onClickVideo={this.handleVideo}
+						onClickConnect={this.connect}
+						videoRef={this.localVideoref}
+					/>
+					
+					</>
 					:
 					<div>
 						<div className="btn-down" style={{ backgroundColor: "whitesmoke", color: "whitesmoke", textAlign: "center" }}>
