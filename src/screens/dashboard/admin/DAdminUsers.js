@@ -204,7 +204,7 @@ export default function DAdminUsers() {
    <MaterialTable
     columns={columnas}
     data={dataAdmin}
-    title='Usuarios Profesores'
+    title='Usuarios Administrador'
     actions={[
       {
         tooltip:'Eliminar',
