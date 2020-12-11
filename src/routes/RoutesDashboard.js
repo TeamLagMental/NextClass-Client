@@ -1,5 +1,9 @@
-import { Explore, Apps, ThreeDRotation } from '@material-ui/icons'
-import { DStudentSubjects, DStudentSubject, DStudentCareers, DH, DStudentCareer, DAdminUsers} from './../screens'
+import { Explore, Apps} from '@material-ui/icons'
+import ClassIcon from '@material-ui/icons/Class';
+import BuildIcon from '@material-ui/icons/Build';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import PeopleIcon from '@material-ui/icons/People';
+import { DStudentSubjects, DStudentSubject, DStudentCareers, DH, DStudentCareer, DAdminUsers, DAdminConfigs} from './../screens'
 
 export const studentRoutes = {
     items: [
@@ -13,7 +17,7 @@ export const studentRoutes = {
             path: '/d/student/careers',
             name: 'Carreras',
             type: 'link',
-            icon: ThreeDRotation,
+            icon: MenuBookIcon,
             component: DStudentCareers
         },{
             path: '/d/student/career',
@@ -24,7 +28,7 @@ export const studentRoutes = {
             path: '/d/student/subjects',
             name: 'Materias',
             type: 'link',
-            icon: Apps,
+            icon: ClassIcon,
             component: DStudentSubjects
         },{
             path: '/d/student/subjects/:id',
@@ -64,7 +68,7 @@ export const teacherRoutes = {
             path: '/d/teacher/careers',
             name: 'Carreras',
             type: 'link',
-            icon: ThreeDRotation,
+            icon: MenuBookIcon,
             component: DStudentCareers,
             render: true,
             rank: 2
@@ -72,7 +76,7 @@ export const teacherRoutes = {
             path: '/d/teacher/classrooms',
             name: 'Aulas',
             type: 'link',
-            icon: Apps,
+            icon: ClassIcon,
             component: DStudentSubjects,
             render: true,
             rank: 2
@@ -94,7 +98,7 @@ export const adminRoutes = {
             path: '/d/admin/careers',
             name: 'Carreras',
             type: 'link',
-            icon: ThreeDRotation,
+            icon: MenuBookIcon,
             component: DStudentCareers,
             render: true,
             rank: 3
@@ -102,7 +106,7 @@ export const adminRoutes = {
             path: '/d/admin/career',
             name: 'Carreras',
             type: 'link',
-            icon: ThreeDRotation,
+            icon: MenuBookIcon,
             component: DStudentCareer,
             render: true,
             rank: 3
@@ -110,10 +114,18 @@ export const adminRoutes = {
             path: '/d/admin/users',
             name: 'Usuarios',
             type: 'link',
-            icon: ThreeDRotation,
+            icon: PeopleIcon,
             component: DAdminUsers,
             render: true,
             rank: 3
-        },
+        },{
+            path: '/d/admin/config',
+            name: 'Configuracion',
+            type: 'link',
+            icon: BuildIcon,
+            component: DAdminConfigs,
+            render: true,
+            rank: 3
+        }
     ]
 }

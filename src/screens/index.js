@@ -4,6 +4,7 @@ import DStudentCareers from './dashboard/student/careers/DStudentCareers'
 import DStudentCareer from './dashboard/student/careers/DStudentCareer'
 import DAdminCareers from './dashboard/admin/DAdminCareers'
 import DAdminUsers from './dashboard/admin/DAdminUsers'
+import DAdminConfigs from './dashboard/admin/DAdminConfigs'
 import Live from './live/Live'
 import LiveHome from './live/LiveHome'
 
@@ -24,6 +25,6 @@ export { DStudentSubjects, DStudentSubject, DStudentCareers, DStudentCareer}
 // Dashboard - Teacher
 
 // Dashboard - Admin
-export {DAdminCareers, DAdminUsers}
+export {DAdminCareers, DAdminUsers, DAdminConfigs}
 // Live
 export { Live, LiveHome }

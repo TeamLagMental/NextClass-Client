@@ -76,9 +76,11 @@ export const DH = () => {
                             </Button>
                             </Grid>
                             <Grid>
+                            <Wrapper>
                             <Typography variant="h4" gutterBottom>
                                 Nombre de la Institucion
                             </Typography>
+                            </Wrapper>
                         </Grid>
                     </Paper> 
                 </Wrapper>
