@@ -1,5 +1,8 @@
-import { Explore, Apps, ThreeDRotation, EventNote } from '@material-ui/icons'
-import { DStudentHome, DStudentSubjects, DStudentCareers, DStudentCalendar } from './../screens'
+import { Explore, Apps, ThreeDRotation, EventNote, Assignment } from '@material-ui/icons'
+import {
+    DStudentHome, DStudentSubjects, DStudentCareers, DStudentCalendar, DStudentMyTasks,
+    DStudentAddTask
+} from './../screens'
 
 import DSSubjectHome from './../screens/dashboard/student/subjects/homeContents/DSSubjectHome'
 import DSubjectTasks from './../screens/dashboard/student/subjects/tasksContents/DSubjectTasks'
@@ -45,6 +48,17 @@ export const studentRoutes = {
             path: '/d/student/subjects/:id/lessons',
             type: 'link',
             component: DSubjectLessons,
+            noMenu: true
+        },{
+            path: '/d/student/my-tasks',
+            name: 'Mis tareas',
+            type: 'link',
+            icon: Assignment,
+            component: DStudentMyTasks
+        },{
+            path: '/d/student/my-tasks/add-task',
+            type: 'link',
+            component: DStudentAddTask,
             noMenu: true
         },{
             path: '/d/student/calendars',

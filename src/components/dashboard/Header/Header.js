@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { MicNoneOutlined, MicOffOutlined } from '@material-ui/icons'
 import SearchIcon from '@material-ui/icons/Search'
 import SettingsIcon from '@material-ui/icons/Settings'
+import InputBase from '@material-ui/core/InputBase';
 import {
   AppBar,
   Badge,
@@ -94,7 +95,33 @@ const useStyles = makeStyles(theme => ({
     marginTop: '-24px',
     //color: 'rgba(0,0,0,.87)',
     color: 'inherit'
+  },
+
+  searchForm2: {
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    marginRight: theme.spacing(1) * 2,
+    display: 'block',
+    maxWidth: '230px'
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
   }
+
 }));
 
 const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotifications }) => {
@@ -147,11 +174,19 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
 
         <Hidden xsDown>
           <div className={classes.searchWrapper}>
-            <form className={classes.searchForm}>
-              <IconButton aria-label="Search" className={classes.searchIcon}>
+            <form className={classes.searchForm2}>
+              <IconButton aria-label="Buscar" className={classes.searchIcon}>
                 <SearchIcon />
               </IconButton>
-              <input className={classes.searchInput} type="text" placeholder="Search" autoFocus={true}/>
+              {/*<input className={classes.searchInput} type="text" placeholder="Buscar" autoFocus={true}/>*/}
+              <InputBase
+                placeholder="Buscar..."
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
             </form>
           </div>
         </Hidden>
@@ -165,7 +200,7 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
             color="inherit"
             onClick={handleSearchExpandToggle}
             aria-expanded={searchExpanded}
-            aria-label="Show searchbar"
+            aria-label="Buscar"
           >
             <SearchIcon />
           </IconButton>

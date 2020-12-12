@@ -75,7 +75,7 @@ const Home = (props) => {
 	)
 }
 
-const server_url = process.env.NODE_ENV === 'production' ? 'https://video.sebastienbiollo.com' : "http://localhost:5000"
+const server_url = process.env.REACT_APP_VIDEO //"https://sheltered-everglades-00923.herokuapp.com/" //"http://192.168.1.14:5000"
 
 var connections = {}
 const peerConnectionConfig = {

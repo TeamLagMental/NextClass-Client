@@ -60,7 +60,6 @@ const PostCard = ({ title, subtitle, text, image, imageHeight, avatar, link }) =
       </CardContent>
       <CardActions className={classes.actions} disableSpacing>
         <span className="flexSpacer" />
-        <Button>Información</Button>
         <Link to={link}>
           <Button>Ir a la asignatura</Button>
         </Link>

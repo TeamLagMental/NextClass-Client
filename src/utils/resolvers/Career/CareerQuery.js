@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const CAREER = gql`
+export const GETCAREER = gql`
     query getCareer($careerId: ID!){
         getCareer(careerId: $careerId){
             id
@@ -12,7 +12,7 @@ export const CAREER = gql`
     }
 `
 
-export const CAREERS = gql`
+export const GETCAREERS = gql`
     query {
         getCareers {
             id

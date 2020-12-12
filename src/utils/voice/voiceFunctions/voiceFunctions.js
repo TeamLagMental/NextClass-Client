@@ -36,13 +36,14 @@ export const textToVoice = (txt, speak) => {
     let newText = ''
 
     textClipped.forEach((t, i) => {
-        if(n >= 50){
+        if(n >= 40){
             speak({ text: newText })
             n = 0
             newText = t
         } else if(textCount === (i+1)){
             newText = newText+' '+t
-            speak({ text: newText })
+            //speak({ text: newText })
+            setTimeout(speak({ text: newText }), 2000)
         } else {
             n = n + t.length
             newText = newText+' '+t

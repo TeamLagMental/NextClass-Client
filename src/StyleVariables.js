@@ -1,8 +1,8 @@
-const lightBlue = require('@material-ui/core/colors/lightBlue')
+const purple = require('@material-ui/core/colors/purple')
 const yellow = require('@material-ui/core/colors/yellow')
 
 // Colors
-const infoColor = lightBlue.default[500]
+const infoColor = purple.default[500]
 const warningColor = yellow.default[500]
 
 // Spacing

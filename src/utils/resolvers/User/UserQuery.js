@@ -25,3 +25,13 @@ export const GETUSERSUBJECTS = gql`
         }
     }
 `
+
+export const GETUSERCAREERS = gql`
+    query getUserCareers($userId: ID!){
+        getUserCareers(userId: $userId){
+            id
+            director
+            status
+        }
+    }
+`

@@ -17,6 +17,8 @@ export { SelectType } from './dashboard/SelectType'
 export { DStudentHome } from './dashboard/student/DStudentHome'
 export { DStudentSubjects, DStudentCareers }
 export { DStudentCalendar }
+export { DStudentMyTasks } from './dashboard/student/DStudentMyTasks'
+export { DStudentAddTask } from './dashboard/student/tasks/DStudentAddTask'
 
 // Dashboard - Teacher
 
