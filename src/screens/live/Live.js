@@ -441,7 +441,7 @@ class Live extends Component {
 			let tracks = this.localVideoref.current.srcObject.getTracks()
 			tracks.forEach(track => track.stop())
 		} catch (e) {}
-		window.location.href = "/"
+		window.location.href = "/d/student/subjects/"+this.props.subjectID
 	}
 
 	openChat = () => this.setState({ showModal: true, newmessages: 0 })

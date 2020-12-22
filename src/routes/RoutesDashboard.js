@@ -1,7 +1,19 @@
 import { Explore, Apps, ThreeDRotation, EventNote, Assignment } from '@material-ui/icons'
+import ClassIcon from '@material-ui/icons/Class';
+import BuildIcon from '@material-ui/icons/Build';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import PeopleIcon from '@material-ui/icons/People';
+
+import { DStudentCareer, DAdminUsers, DAdminConfigs} from './../screens'
+import DAdminMaterias from './../screens/dashboard/admin/DAdminMaterias'
+import DAdminCarr from './../screens/dashboard/admin/DAdminCarr'
+
 import {
     DStudentHome, DStudentSubjects, DStudentCareers, DStudentCalendar, DStudentMyTasks,
-    DStudentAddTask
+    DStudentAddTask,
+
+    // Teacher
+    DTeacherHome, DTeacherSubjects, DTSubjectHome, DTSubjectTasks, DTSubjectTask, DTSubjectLessons
 } from './../screens'
 
 import DSSubjectHome from './../screens/dashboard/student/subjects/homeContents/DSSubjectHome'
@@ -21,13 +33,18 @@ export const studentRoutes = {
             path: '/d/student/careers',
             name: 'Carreras',
             type: 'link',
-            icon: ThreeDRotation,
+            icon: MenuBookIcon,
             component: DStudentCareers
         },{
-            path: '/d/student/subjects',
-            name: 'Materias',
+            path: '/d/student/career',
             type: 'link',
-            icon: Apps,
+            component: DStudentCareer,
+            noMenu: true
+        },{
+            path: '/d/student/subjects',
+            name: 'Asignaturas',
+            type: 'link',
+            icon: ClassIcon,
             component: DStudentSubjects
         },{
             path: '/d/student/subjects/:id',
@@ -70,14 +87,6 @@ export const studentRoutes = {
                     path: '/lessons-calendar',
                     name: 'Calendario de clases',
                     component: DStudentCalendar
-                },{
-                    path: '/lessons-list',
-                    name: 'Lista de clases',
-                    component: () => { return (<div>Lista de clases</div>) }
-                },{
-                    path: '/events',
-                    name: 'Eventos',
-                    component: () => { return (<div>Eventos</div>) }
                 }
             ]
         }
@@ -91,9 +100,41 @@ export const teacherRoutes = {
             name: 'Inicio',
             type: 'link',
             icon: Explore,
-            component: () => { return (<div>Teacher</div>) },
+            component: DTeacherHome,
             render: true,
             rank: 2
+        },{
+            path: '/d/teacher/careers',
+            name: 'Carreras',
+            type: 'link',
+            icon: ThreeDRotation,
+            component: DStudentCareers
+        },{
+            path: '/d/teacher/subjects',
+            name: 'Asignaturas',
+            type: 'link',
+            icon: Apps,
+            component: DTeacherSubjects
+        },{
+            path: '/d/teacher/subjects/:id',
+            type: 'link',
+            component: DTSubjectHome,
+            noMenu: true
+        },{
+            path: '/d/teacher/subjects/:id/tasks',
+            type: 'link',
+            component: DTSubjectTasks,
+            noMenu: true
+        },{
+            path: '/d/teacher/subjects/:id/tasks/:taskID',
+            type: 'link',
+            component: DTSubjectTask,
+            noMenu: true
+        },{
+            path: '/d/teacher/subjects/:id/lessons',
+            type: 'link',
+            component: DTSubjectLessons,
+            noMenu: true
         }
     ]
 }
@@ -105,7 +146,55 @@ export const adminRoutes = {
             name: 'Inicio',
             type: 'link',
             icon: Explore,
-            component: () => { return (<div>Admin</div>) },
+            component: DTeacherHome,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/careers',
+            name: 'Carreras',
+            type: 'link',
+            icon: MenuBookIcon,
+            component: DStudentCareers,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/career',
+            name: 'Carreras',
+            type: 'link',
+            icon: MenuBookIcon,
+            component: DStudentCareer,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/users',
+            name: 'Usuarios',
+            type: 'link',
+            icon: PeopleIcon,
+            component: DAdminUsers,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/config',
+            name: 'Configuracion',
+            type: 'link',
+            icon: BuildIcon,
+            component: DAdminConfigs,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/materias',
+            name: 'Materias',
+            type: 'link',
+            icon: BuildIcon,
+            component: DAdminMaterias,
+            render: true,
+            rank: 3
+        },{
+            path: '/d/admin/carrera/edit',
+            name: 'Carrera',
+            type: 'link',
+            icon: BuildIcon,
+            component: DAdminCarr,
             render: true,
             rank: 3
         }

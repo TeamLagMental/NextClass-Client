@@ -182,12 +182,12 @@ const DStudentLayout = () => {
         >
           <SpeedDialAction
             icon={<WbSunny/>}
-            tooltipTitle="Toggle light/dark theme"
+            tooltipTitle="Alternar tema claro/oscuro" // Toggle light/dark theme
             onClick={() => dispatch({ type: "type" })}
           />
           <SpeedDialAction
             icon={ state.direction === "rtl" ? (<FormatTextdirectionLToR/>) : (<FormatTextdirectionLToR/>) }
-            tooltipTitle="Toggle LTR/RTL direction"
+            tooltipTitle="Alternar dirección" // Toggle LTR/RTL direction
             onClick={() => dispatch({ type: "direction" })}
           />
         </SpeedDial>

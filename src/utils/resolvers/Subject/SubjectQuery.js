@@ -8,7 +8,6 @@ export const GETSUBJECT = gql`
             description
             teacher
             image
-            image
             careers{
                 id
             }

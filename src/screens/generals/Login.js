@@ -95,7 +95,7 @@ export const Login = (props) => {
               <form onSubmit={onSubmit} noValidate>
                 <div className={classNames(classes.logo, `text-xs-center pb-xs`)}>
                   <Typography variant="h4" className={classes.title}>
-                    STELAR
+                    eSTELAR
                   </Typography>
                   <Typography variant="caption">
                     Inicie sesión con su ID de aplicación para continuar.

@@ -14,6 +14,10 @@ export { dateFormat } from './functions/dateFormat'
 // MUTATIONS
 export { LOGIN_USER, STUDENT_SUBJECTS, SUBJECTS, TEACHER } from './resolvers/Mutations'
 export { SETPOST } from './resolvers/Post/PostMutation'
+export {
+    EDITTASK, UPLOAD_FILES_TASK, SET_CONTENT_TASK, PUBLICUPLOADFILESTASK, DELIVERTASK, CANCELTASKDELIVERY
+} from './resolvers/Task/TaskMutation'
+export { CREATESTUDENTTASK } from './resolvers/StudentTask/StudentTaskMutation'
 
 // QUERYS
 export { GETCAREER, GETCAREERS } from './resolvers/Career/CareerQuery'
@@ -22,6 +26,8 @@ export { GETUSER, GETUSERSUBJECTS, GETUSERCAREERS } from './resolvers/User/UserQ
 export { GETPOSTS, GETSUBJECTPOSTS } from './resolvers/Post/PostQuery'
 export { GETTASK, GETTASKS, GETSUBJECTTASKS } from './resolvers/Task/TaskQuery'
 export { GETLESSONS, GETSUBJECTLESSONS } from './resolvers/Lesson/LessonQuery'
+export { GETSTUDENTTASKS, GETSTUDENTTASK } from './resolvers/StudentTask/StudentTaskQuery'
+export { GETPDFCONTENT, GETWORDCONTENT } from './resolvers/Other/OtherQuery'
 
 // SUBSCRIPTIONS
 export { NEWPOSTS } from './resolvers/Post/PostSubscriptions'

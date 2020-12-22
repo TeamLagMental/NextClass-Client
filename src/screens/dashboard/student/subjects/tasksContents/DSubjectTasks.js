@@ -27,11 +27,9 @@ function DSubjectTasks(props){
         {
             tasks.length > 0 ? (
                 <div className={classes.root}>
-                    <TasksTab allTasks={
-                        tasks.map((task, key) => {
+                        {tasks.map((task, key) => {
                             return <TasksAccordion data={task} k={key} key={key}/>
-                        })
-                    }/>
+                        })}
                 </div>
             ) : (
                 <div>¡Hurra! No se encontró ningún trabajo.</div>

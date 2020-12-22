@@ -125,7 +125,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotifications }) => {
-  const { logout } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
   const { speak } = useSpeechSynthesis()
   const [anchorEl, setAnchorEl] = useState(null)
   const [searchExpanded, setSearchExpanded] = useState(false)
@@ -222,7 +222,7 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
 
         <Tooltip title="Notificaciones">
           <IconButton color="inherit" onClick={handleNotificationToggle}>
-            <Badge badgeContent={5} color="secondary">
+            <Badge badgeContent={3} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -244,12 +244,6 @@ const Header = ({ logo, logoAltText, toggleFullscreen, toggleDrawer, toogleNotif
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Configuraciones" />
-          </MenuItem>
-          <MenuItem onClick={handleCloseMenu}>
-            <ListItemIcon>
-              <AccountBoxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Perfil" />
           </MenuItem>
           <MenuItem onClick={handleCloseMenu}>
             <ListItemIcon>

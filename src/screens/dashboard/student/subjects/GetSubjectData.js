@@ -4,7 +4,7 @@ import { Grid, Avatar } from '@material-ui/core'
 import { blue } from '@material-ui/core/colors'
 import { PostCard } from './../../../../components/dashboard'
 import { AuthContext } from './../../../../context/auth'
-import { GETSUBJECT, GETUSERCAREERS, GetUserInitials, GetCareerName } from '../../../../utils'
+import { GETSUBJECT, GETUSERCAREERS, GetUserInitials } from '../../../../utils'
 
 export const GetSubjectData = (props) => {
     const subjectId = props.subjectId

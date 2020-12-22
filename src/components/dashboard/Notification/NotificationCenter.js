@@ -108,8 +108,8 @@ const NotificationCenter = ({ notificationsOpen, toogleNotifications }) => {
         classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
         centered
       >
-        <Tab classes={{ root: classes.tabRoot }} label="Today" />
-        <Tab classes={{ root: classes.tabRoot }} label="Notifications" />
+        <Tab classes={{ root: classes.tabRoot }} label="Todas" />
+        <Tab classes={{ root: classes.tabRoot }} label="Importantes" />
       </Tabs>
       <div className={classes.container}>
         {tab === 0 && (

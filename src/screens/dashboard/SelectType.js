@@ -70,7 +70,7 @@ export const SelectType = () => {
                                                 <Link to="/d/admin">
                                                     <ListItem button>
                                                         <ListItemAvatar>
-                                                            <Avatar className={classes.avatar} src="https://i.redd.it/vl3e90ahihf51.jpg"/>
+                                                            <Avatar className={classes.avatar} src="https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png"/>
                                                         </ListItemAvatar>
                                                         <ListItemText>Administrador</ListItemText>
                                                     </ListItem>
@@ -90,7 +90,7 @@ export const SelectType = () => {
                                                 <Link to="/d/student">
                                                     <ListItem button>
                                                         <ListItemAvatar>
-                                                            <Avatar className={classes.avatar} src="https://previews.123rf.com/images/creativenature/creativenature1503/creativenature150300034/37192006-un-retrato-resoluci%C3%B3n-completa-de-la-cabeza-de-un-var%C3%B3n-zorro-rojo-vulpes-vulpes-en-entorno-natural-con-fo.jpg"/>
+                                                            <Avatar className={classes.avatar} src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"/>
                                                         </ListItemAvatar>
                                                         <ListItemText>Alumno</ListItemText>
                                                     </ListItem>

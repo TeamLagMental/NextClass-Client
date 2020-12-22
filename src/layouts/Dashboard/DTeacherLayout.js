@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
     display: "flex",
     flexDirection: "row",
-    flexGrow: 1
+    flexGrow: 1,
   },
   speedDial: {
     position: "absolute",
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DTeacherLayout = () => {
+const DStudentLayout = () => {
   const { user } = useContext(AuthContext)
 
   const classes = useStyles()
@@ -145,6 +145,8 @@ const DTeacherLayout = () => {
     }
   }, [])
 
+  const sidebarItems = teacherRoutes.items.filter(item => item.noMenu !== true)
+
   return user ? (
   <>
     <Header
@@ -158,7 +160,7 @@ const DTeacherLayout = () => {
     />
 
     <div className={classNames(classes.panel, "theme-dark")}>
-      <Sidebar routes={teacherRoutes.items} opened={opened} toggleDrawer={handleDrawerToggle}/>
+      <Sidebar routes={sidebarItems} opened={opened} toggleDrawer={handleDrawerToggle}/>
       <Workspace opened={opened}>{getRoutes}</Workspace>
       <NotificationCenter
         notificationsOpen={notificationsOpen}
@@ -180,12 +182,12 @@ const DTeacherLayout = () => {
         >
           <SpeedDialAction
             icon={<WbSunny/>}
-            tooltipTitle="Toggle light/dark theme"
+            tooltipTitle="Alternar tema claro/oscuro" // Toggle light/dark theme
             onClick={() => dispatch({ type: "type" })}
           />
           <SpeedDialAction
             icon={ state.direction === "rtl" ? (<FormatTextdirectionLToR/>) : (<FormatTextdirectionLToR/>) }
-            tooltipTitle="Toggle LTR/RTL direction"
+            tooltipTitle="Alternar dirección" // Toggle LTR/RTL direction
             onClick={() => dispatch({ type: "direction" })}
           />
         </SpeedDial>
@@ -194,4 +196,4 @@ const DTeacherLayout = () => {
   ) : ( <Redirect to="/login" /> )
 }
 
-export default DTeacherLayout
+export default DStudentLayout

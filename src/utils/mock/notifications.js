@@ -40,30 +40,12 @@ const date = Date.now();
 export const mockNotifications = [
   {
     avatar: (
-      <Avatar style={{ ...styles.indigoText }}>
-        <PeopleIcon />
-      </Avatar>
-    ),
-    title: 'Social',
-    subtitle: 'Euismod Ullamcorper Malesuada'
-  },
-  {
-    avatar: (
-      <Avatar style={{ ...styles.redText }}>
-        <LocalOfferIcon />
-      </Avatar>
-    ),
-    title: 'Promotions',
-    subtitle: 'Mattis Malesuada Porta'
-  },
-  {
-    avatar: (
       <Avatar style={{ ...styles.yellowText }}>
         <InfoIcon />
       </Avatar>
     ),
-    title: 'Updates',
-    subtitle: 'Amet Sem Commodo'
+    title: 'Actualización',
+    subtitle: 'Versión 4.5'
   },
   {
     avatar: (
@@ -71,7 +53,7 @@ export const mockNotifications = [
         <DeleteSweepIcon />
       </Avatar>
     ),
-    title: 'Removed 6 items from task list',
+    title: 'Mi tarea eliminada',
     subtitle: moment(date).format('MMMM Do YYYY, h:mm:ss a')
   },
   {
@@ -80,52 +62,8 @@ export const mockNotifications = [
         <CheckCircleIcon />
       </Avatar>
     ),
-    title: 'Completed 2 projects',
+    title: 'Tarea entregada (1)',
     subtitle: moment(new Date(date - 1000 * 60 * 60)).format(
-      'MMMM Do YYYY, h:mm:ss a'
-    )
-  },
-  {
-    avatar: (
-      <Avatar style={{ ...styles.defaultText }}>
-        <NotificationsPausedIcon />
-      </Avatar>
-    ),
-    title: 'Muted notifications',
-    subtitle: moment(new Date(date - 1000 * 60 * 60 * 2)).format(
-      'MMMM Do YYYY, h:mm:ss a'
-    )
-  },
-  {
-    avatar: (
-      <Avatar style={{ ...styles.defaultText }}>
-        <PersonAddIcon />
-      </Avatar>
-    ),
-    title: 'Added Joek to contact list',
-    subtitle: moment(new Date(date - 1000 * 60 * 60 * 3)).format(
-      'MMMM Do YYYY, h:mm:ss a'
-    )
-  },
-  {
-    avatar: (
-      <Avatar style={{ ...styles.defaultText }}>
-        <PhoneMissedIcon />
-      </Avatar>
-    ),
-    title: 'Missed live call from Ellie',
-    subtitle: moment(new Date(date - 1000 * 60 * 60 * 6)).format(
-      'MMMM Do YYYY, h:mm:ss a'
-    )
-  },
-  {
-    avatar: (
-      <Avatar style={{ ...styles.defaultText }}>
-        <GroupAddIcon />
-      </Avatar>
-    ),
-    title: "You've been added to HR group",
-    subtitle: moment(new Date(date - 1000 * 60 * 60 * 10)).format(
       'MMMM Do YYYY, h:mm:ss a'
     )
   }

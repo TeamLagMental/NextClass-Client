@@ -55,40 +55,25 @@ export const Home = () => {
             <div className={classes.content}>
                 <div className={classes.wrapper}>
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" className={classes.title} gutterBottom>
-                        STELAR
+                        eSTELAR
                     </Typography>
                     <Typography variant="h5" align="center" color="textPrimary" className={classes.textColor} paragraph>
-                        Something short and leading about the collection below—its contents, the creator, etc.
-                        Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-                        entirely.
+                        Despega tu conocimiento...
                     </Typography>
                     <div className={classes.heroButtons}>
                         <Grid container spacing={2} justify="center">
                             <Grid item>
-                                <Button variant="contained" color="primary">
-                                    <i className="fas fa-meteor mr-1"></i> Descubrir
-                                </Button>
-                            </Grid>
-                            <Grid item>
                                 {user ? (
-                                    <Link
-                                        to="/s"
-                                        variant="contained"
-                                        color="primary"
-                                        role="button"
-                                        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
-                                    >
+                                    <Link to="/s" >
+                                        <Button variant="contained" color="primary">
                                         <i className="fa fa-fw fa-rocket mr-1"></i> Ir al panel
+                                        </Button>
                                     </Link>
                                 ) : (
-                                    <Link
-                                        to="/login"
-                                        variant="contained"
-                                        color="primary"
-                                        role="button"
-                                        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
-                                    >
+                                    <Link to="/login" >
+                                        <Button variant="contained" color="primary">
                                         <i className="fa fa-fw fa-rocket mr-1"></i> Iniciar Sesión
+                                        </Button>
                                     </Link>
                                 )}
                             </Grid>

@@ -8,7 +8,8 @@ import Tab from '@material-ui/core/Tab';
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
-        borderRadius: "0px"
+        borderRadius: "0px",
+        backgroundColor: "#4040a1"
     }
 })
 
@@ -17,11 +18,17 @@ function SubjectTabs(props){
     const classes = useStyles()
     return (
         <Paper className={classes.root}>
-            <Tabs>
-                <Link to={'/d/student/subjects/'+subjectID}><Tab label="Inicio"/></Link>
-                <Link to={'/d/student/subjects/'+subjectID+'/tasks'}><Tab label="Trabajos de clase"/></Link>
-                <Link to={'/d/student/subjects/'+subjectID+'/lessons'}><Tab label="Clases"/></Link>
-                <Tab label="Live" />
+            <Tabs centered>
+
+                <Link to={'/d/student/subjects/'+subjectID}>
+                    <Tab label="Inicio" style={{ color: "white" }}/>
+                </Link>
+                <Link to={'/d/student/subjects/'+subjectID+'/tasks'}>
+                    <Tab label="Trabajos de clase" style={{ color: "white" }}/>
+                </Link>
+                <Link to={'/d/student/subjects/'+subjectID+'/lessons'}>
+                    <Tab label="Clases" style={{ color: "white" }}/>
+                </Link>
             </Tabs>
         </Paper>
     )

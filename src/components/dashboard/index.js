@@ -15,9 +15,11 @@ import { PostCard2 } from './Cards/PostCard2'
 // Tabs
 import TasksTab from './Tabs/TasksTab'
 import SubjectTabs from './Tabs/SubjectTabs'
+import SubjectTeacherTabs from './Tabs/SubjectTeacherTabs'
 
 // Acordion
 import TasksAccordion from './Accordion/TasksAccordion'
+import TeacherTasksAccordion from './Accordion/TeacherTasksAccordion'
 
 // Calendar
 import CalendarApp from './Calendar/Calendar'
@@ -34,9 +36,9 @@ export {
     // Loaders
     Loader1,
     // Tabs
-    TasksTab, SubjectTabs,
+    TasksTab, SubjectTabs, SubjectTeacherTabs,
     // Acordion
-    TasksAccordion,
+    TasksAccordion, TeacherTasksAccordion,
     // Calendar
     CalendarApp,
     // Tables

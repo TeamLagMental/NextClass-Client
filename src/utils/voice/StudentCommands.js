@@ -1,8 +1,16 @@
 import React, { useContext, useState } from 'react'
+import ReactDOM from 'react-dom'
 import { Redirect } from 'react-router-dom'
 import { useSpeechSynthesis } from 'react-speech-kit'
-import { useQuery, useLazyQuery } from '@apollo/react-hooks'
-import { GETSUBJECTSUSER, GETSUBJECTTASKS, GETTASK } from './../'
+import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks'
+import { makeStyles } from '@material-ui/core/styles'
+import { ListItem, ListItemIcon, ListItemText, Button } from '@material-ui/core'
+import { Description } from '@material-ui/icons'
+import {
+    GETSUBJECTSUSER, GETSUBJECTTASKS, GETTASK, CREATESTUDENTTASK,
+    GETSTUDENTTASKS, SET_CONTENT_TASK, DELIVERTASK, CANCELTASKDELIVERY,
+    GETPDFCONTENT, GETWORDCONTENT
+} from './../'
 import { AuthContext } from '../../context/auth'
 import { numberToInt, textToVoice } from './voiceFunctions/voiceFunctions'
 
@@ -38,10 +46,17 @@ const symbolsList = [
 
 const redirectTo = (uri) => <Redirect to={ uri }/>
 
+const useStyles = makeStyles((theme) => ({
+    button: {
+        width: '100%'
+    }
+}))
+
 export const StudentCommands = (state) => {
     const synth = window.speechSynthesis
     const { speak } = useSpeechSynthesis()
     const { user } = useContext(AuthContext)
+    const classes = useStyles()
 
     const [IDSubject, setIDSubject] = useState('')
     const [IDTask, setIDTask] = useState('')
@@ -49,12 +64,62 @@ export const StudentCommands = (state) => {
     const [cancelTask, setCancelTask] = useState(false)
     const [attachTask, setAttachTask] = useState(false)
     const [taskLastContent, setTaskLastContent] = useState('')
+    const [titleContent, setTitleContent] = useState('')
+    const [selectMyTask, setSelectMyTask] = useState('')
+    const [taskDelivered, setTaskDelivered] = useState(false)
+    const [taskArchive, setTaskArchive] = useState('')
 
     const { data: dataSubjectUser1 } = useQuery(GETSUBJECTSUSER, { variables: { userId: user.id } })
     const [dataTask2, { data: dataTask1, loading: loadingDataTask1 }] = useLazyQuery(GETTASK)
     const [dataSubjectTasks2, {
         data: dataSubjectTasks1, loading: loadingSubjectTasks1
     }] = useLazyQuery(GETSUBJECTTASKS)
+    const [addStudentTask] = useMutation(CREATESTUDENTTASK)
+    const { loading: lSTask, data: dSTask } = useQuery(GETSTUDENTTASKS, { variables: { userID: user.id } })
+    const [setContentTask] = useMutation(SET_CONTENT_TASK)
+    const [deliverTask] = useMutation(DELIVERTASK)
+    const [cancelTaskDelivery] = useMutation(CANCELTASKDELIVERY)
+    const [dataPDF, { loading: lPDF, data: dPDF }] = useLazyQuery(GETPDFCONTENT)
+    const [dataWORD, { loading: lWORD, data: dWORD }] = useLazyQuery(GETWORDCONTENT)
+
+    const ItemRender = (name) => {
+        return (
+            <ListItem button>
+                <ListItemIcon>
+                    <Description/>
+                </ListItemIcon>
+                <ListItemText primary={name} />
+            </ListItem>
+        )
+    }
+    
+    const Item2Render = () => {
+        const myButton1 = document.getElementById('butt1')
+        myButton1.setAttribute("style", "display:none;")
+
+        const br1 = document.getElementById('br1')
+        br1.setAttribute("style", "display:none;")
+        const br2 = document.getElementById('br2')
+        br2.setAttribute("style", "display:none;")
+
+        const myButton2 = document.getElementById('butt2')
+        myButton2.classList.remove("MuiButton-containedPrimary")
+        return myButton2.textContent = "Cancelar entrega"
+    }
+
+    const Item3Render = () => {
+        const myButton1 = document.getElementById('butt1')
+        myButton1.removeAttribute("style")
+
+        const br1 = document.getElementById('br1')
+        br1.removeAttribute("style")
+        const br2 = document.getElementById('br2')
+        br2.removeAttribute("style")
+
+        const myButton2 = document.getElementById('butt2')
+        myButton2.setAttribute("class", "MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-118 MuiButton-containedPrimary")
+        return myButton2.textContent = "Entregar tarea"
+    }
 
     /* ------------------------------------------------------------- */
 
@@ -73,7 +138,9 @@ export const StudentCommands = (state) => {
                 speak({ text: 'Yendo a '+directory })
                 return state(redirectTo(found.uri))
             } else {
-                speak({ text: 'No se encontró el directorio '+directory })
+                //speak({ text: 'No se encontró el directorio '+directory })
+                const newText = 'No se encontró el directorio '+directory
+                textToVoice(newText, speak)
             }
         }
     },{
@@ -220,6 +287,104 @@ export const StudentCommands = (state) => {
         }
     },{
         // Terminado
+        command: 'Listar archivos adjuntos',
+        callback: () => {
+            if(IDSubject !== ''){
+                if(IDTask !== ''){
+                    if(!loadingDataTask1){
+                        if(!dataTask1) return speak({ text: 'No hay datos disponibles'})
+
+                        const archives = dataTask1.getTask.archives.filter((i) => { return i.status === true })
+
+                        if(archives){
+                            archives.map((archive, i) => {
+                                return textToVoice('Archivo número '+(i+1)+': '+archive.name, speak)
+                            })
+                        } else {
+                            return textToVoice('No se encontraron archivos adjuntos en esta asignatura', speak)
+                        }
+                    }
+                } else {
+                    return speak({ text: 'Primero seleccione una tarea de la asignatura'})
+                }
+            } else {
+                return speak({ text: 'Primero seleccione una asignatura'})
+            }
+        }
+    },{
+        // Terminado
+        command: 'Seleccionar archivo número *',
+        callback: (number) => {
+            if(IDSubject !== ''){
+                if(IDTask !== ''){
+                    if(!loadingDataTask1){
+                        if(!dataTask1) return speak({ text: 'No hay datos disponibles'})
+                        const archives = dataTask1.getTask.archives.filter((i) => { return i.status === true })
+                        if(archives){
+                            const newNumber = numberToInt(number)
+                            const archive = archives.filter((archive, i) => {
+                                return (i+1) === newNumber
+                            })
+                            setTaskArchive(archive[0])
+                            if(archive[0].name.includes('.pdf')){
+                                dataPDF({ variables: {
+                                    subjectID: IDSubject, taskID: IDTask, userType: 'teacher', documentName: archive[0].name
+                                }})
+                            } else if(archive[0].name.includes('.docx')){
+                                dataWORD({ variables: {
+                                    subjectID: IDSubject, taskID: IDTask, userType: 'teacher', documentName: archive[0].name
+                                }})
+                            }
+                            
+                            return textToVoice(
+                                'Archivo número '+newNumber+' seleccionado: '+archive[0].name, speak
+                            )
+                        } else {
+                            return textToVoice('No se encontraron archivos adjuntos en esta asignatura', speak)
+                        }
+                    }
+                } else {
+                    return speak({ text: 'Primero seleccione una tarea de la asignatura'})
+                }
+            } else {
+                return speak({ text: 'Primero seleccione una asignatura'})
+            }
+        }
+    },{
+        // Terminado
+        command: 'Leer archivo seleccionado',
+        callback: () => {
+            if(IDSubject !== ''){
+                if(IDTask !== ''){
+                    if(!loadingDataTask1){
+                        if(!dataTask1) return speak({ text: 'No hay datos disponibles'})
+                        if(taskArchive !== ''){
+                            if(taskArchive.name.includes('.pdf')){
+                                if(!lPDF){
+                                    const PDF = dPDF.getPDFContent
+                                    textToVoice('Nombre: '+taskArchive.name, speak)
+                                    textToVoice('Contenido: '+PDF.text, speak)
+                                }
+                            } else if(taskArchive.name.includes('.docx')){
+                                if(!lWORD){
+                                    const WORD = dWORD.getDocument
+                                    textToVoice('Nombre: '+taskArchive.name, speak)
+                                    textToVoice('Contenido: '+WORD.text, speak)
+                                }
+                            }
+                        } else {
+                            return speak({ text: 'No ha seleccionado ningún archivo'})
+                        }
+                    }
+                } else {
+                    return speak({ text: 'Primero seleccione una tarea de la asignatura'})
+                }
+            } else {
+                return speak({ text: 'Primero seleccione una asignatura'})
+            }
+        }
+    },{
+        // Terminado
         command: 'Crear nueva tarea',
         callback: () => {
             if(newTask){
@@ -286,10 +451,14 @@ export const StudentCommands = (state) => {
         callback: (symbol) => {
             if(newTask){
                 const found = symbolsList.find(element => element.name === symbol)
-                const object = document.querySelectorAll('.ql-editor')
-                object.forEach(element => { element.textContent += found.symbol })
-                setTaskLastContent(found.name)
-                return textToVoice('Símbolo '+symbol+' agregado', speak)
+                if(found){
+                    const object = document.querySelectorAll('.ql-editor')
+                    object.forEach(element => { element.textContent += found.symbol })
+                    setTaskLastContent(found.name)
+                    return textToVoice('Símbolo '+symbol+' agregado', speak)
+                } else {
+                    return textToVoice('No se encontró el símbolo '+symbol, speak)
+                }
             } else {
                 return speak({ text: 'Primero crea una nueva tarea'})
             }
@@ -321,25 +490,182 @@ export const StudentCommands = (state) => {
         callback: () => {
             if(newTask){
                 const object = document.querySelectorAll('.ql-editor')
-                return object.forEach(element => { textToVoice(element.textContent, speak) })
+                object.forEach(element => {
+                    if(element.textContent.length > 0){
+                        textToVoice(element.textContent, speak)
+                    } else {
+                        textToVoice('No hay texto para leer', speak)
+                    }
+                })
             } else {
                 return speak({ text: 'Primero crea una nueva tarea'})
             }
         }
     },{
-        //
-        command: 'Adjuntar tarea realizada',
+        // Terminado
+        command: 'Asignar título *',
+        callback: (title) => {
+            if(newTask){
+                setTitleContent(title)
+                textToVoice('Título '+title+' asignado', speak)
+            } else {
+                return speak({ text: 'Primero crea una nueva tarea'})
+            }
+        }
+    },{
+        // Terminado
+        command: 'Quitar título',
+        callback: () => {
+            if(newTask){
+                setTitleContent('')
+                textToVoice('Título quitado', speak)
+            } else {
+                return speak({ text: 'Primero crea una nueva tarea'})
+            }
+        }
+    },{
+        // Terminado
+        command: 'Guardar tarea',
+        callback: () => {
+            if(newTask){
+                const object = document.querySelectorAll('.ql-editor')
+                object.forEach(element => {
+                    if(element.textContent.length > 0){
+                        const myText = element.textContent
+                        if(titleContent === ''){
+                            return textToVoice('Primero asigna un título a la tarea', speak)
+                        } else {
+                            addStudentTask({ variables: { body: myText, title: titleContent } })
+                            textToVoice('Tarea guardada con éxito', speak)
+                            return state(redirectTo('/d/student/my-tasks/'))
+                        }
+                    } else {
+                        textToVoice('Primero agrega un texto', speak)
+                    }
+                })
+            } else {
+                return speak({ text: 'Primero crea una nueva tarea'})
+            }
+        }
+    },{
+        // Terminado
+        command: 'Listar mis tareas',
+        callback: () => {
+            if(!lSTask){
+                if(!dSTask){
+                    return textToVoice('No se encontró ninguna tarea', speak)
+                } else {
+                    dSTask.getStudentTasks.map((task, i) => {
+                        return textToVoice('Tarea número '+(i+1)+':'+ task.title, speak)
+                    })
+                }
+            }
+        }
+    },{
+        // Terminado
+        command: 'Seleccionar mi tarea número *',
+        callback: (number) => {
+            if(IDSubject !== ''){
+                if(IDTask !== ''){
+                    if(!loadingDataTask1){
+                        if(!lSTask){
+                            if(!dSTask){
+                                return textToVoice('No se encontró ninguna tarea', speak)
+                            } else {
+                                if(dSTask.getStudentTasks.length > 0){
+                                    const newNumber = numberToInt(number)
+                                    const thisTask = dSTask.getStudentTasks.filter((task, i) => {
+                                        return (i+1) === newNumber
+                                    })
+                                    setAttachTask(true)
+                                    setSelectMyTask(thisTask[0])
+                                    return textToVoice(
+                                        'Su tarea número '+newNumber+' ha sido seleccionada: '+thisTask[0].title, speak
+                                    )
+                                } else {
+                                    return textToVoice('No se encontró ninguna tarea', speak)
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    return speak({ text: 'Primero seleccione una tarea de la asignatura'})
+                }
+            } else {
+                return speak({ text: 'Primero seleccione una asignatura'})
+            }
+        }
+    },{
+        // Casi completo
+        command: 'Adjuntar tarea seleccionada',
         callback: () => {
             if(IDSubject !== ''){
                 if(IDTask !== ''){
                     if(!loadingDataTask1){
-                        setAttachTask(true)
-                        if(attachTask){
-                            const dataTask = dataTask1.getTask
-
-                            
-
-                            return speak({ text: 'Adjuntando...'})
+                        if(!lSTask){
+                            if(attachTask){
+                                setContentTask({ variables: {
+                                    taskID: IDTask, fileName: selectMyTask.title, sTaskID: selectMyTask.id
+                                }})
+                                const myContentXD = document.getElementById('myContentXD')
+                                ReactDOM.render(ItemRender(selectMyTask.title), myContentXD)
+                                setAttachTask(false)
+                                return textToVoice('Tarea adjuntada: '+selectMyTask.title, speak)
+                            } else {
+                                return textToVoice('No seleccionó ninguna tarea', speak)
+                            }
+                        }
+                    }
+                } else {
+                    return speak({ text: 'Primero seleccione una tarea de la asignatura'})
+                }
+            } else {
+                return speak({ text: 'Primero seleccione una asignatura'})
+            }
+        }
+    },{
+        // Terminado
+        command: 'Entregar tarea',
+        callback: () => {
+            if(IDSubject !== ''){
+                if(IDTask !== ''){
+                    if(!loadingDataTask1){
+                        if(!lSTask){
+                            if(taskDelivered){
+                                return textToVoice('La tarea ya está entregada', speak)
+                            } else {
+                                deliverTask({ variables: { taskID: IDTask }})
+                                setTaskDelivered(true)
+                                /*const myButtonXD = document.getElementById('myButtonXD')
+                                ReactDOM.render(Item2Render, myButtonXD)*/
+                                Item2Render()
+                                return textToVoice('La tarea ha sido entregada con éxito', speak)
+                            }
+                        }
+                    }
+                } else {
+                    return speak({ text: 'Primero seleccione una tarea de la asignatura'})
+                }
+            } else {
+                return speak({ text: 'Primero seleccione una asignatura'})
+            }
+        }
+    },{
+        // Terminado
+        command: 'Cancelar entrega',
+        callback: () => {
+            if(IDSubject !== ''){
+                if(IDTask !== ''){
+                    if(!loadingDataTask1){
+                        if(!lSTask){
+                            if(taskDelivered){
+                                cancelTaskDelivery({ variables: { taskID: IDTask }})
+                                setTaskDelivered(false)
+                                Item3Render()
+                                return textToVoice('La entrega ha sido cancelada', speak)
+                            } else {
+                                return textToVoice('Aún no realizó la entrega de esta tarea', speak)
+                            }
                         }
                     }
                 } else {

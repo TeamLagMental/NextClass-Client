@@ -10,6 +10,19 @@ export const GETTASK = gql`
             body
             createdAt
             deliveryDate
+            archives {
+                id
+                name
+                status
+            }
+            studentArchives {
+                id
+                studentID
+                name
+                status
+                from
+                sTaskID
+            }
         }
     }
 `
@@ -24,6 +37,19 @@ export const GETTASKS = gql`
             body
             createdAt
             deliveryDate
+            archives {
+                id
+                name
+                status
+            }
+            studentArchives {
+                id
+                studentID
+                name
+                status
+                from
+                sTaskID
+            }
         }
     }
 `
@@ -38,6 +64,19 @@ export const GETSUBJECTTASKS = gql`
             body
             createdAt
             deliveryDate
+            archives {
+                id
+                name
+                status
+            }
+            studentArchives {
+                id
+                studentID
+                name
+                status
+                from
+                sTaskID
+            }
         }
     }
 `

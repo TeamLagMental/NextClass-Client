@@ -4,9 +4,9 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import InsertLinkIcon from "@material-ui/icons/InsertLink";
-import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
+//import IconButton from "@material-ui/core/IconButton";
+//import InsertLinkIcon from "@material-ui/icons/InsertLink";
+//import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
 import TextField from '@material-ui/core/TextField';
 
 function PublishPostCard(props){
@@ -39,12 +39,12 @@ function PublishPostCard(props){
                 />
                 <Divider />
                 <CardActions>
-                    <IconButton className="ma-0" aria-label="Insert Photo">
+                    {/*<IconButton className="ma-0" aria-label="Insert Photo">
                         <InsertPhotoIcon />
                     </IconButton>
                     <IconButton className="ma-0" aria-label="Insert Link">
                         <InsertLinkIcon />
-                    </IconButton>
+                    </IconButton>*/}
                     <span className="flexSpacer" />
 
                     <Button
@@ -52,10 +52,13 @@ function PublishPostCard(props){
                         color="primary"
                         type="submit"
                         disabled={buttonState}
-                        onClick={ async(e) => {
-                            e.preventDefault()
-                            await setPost({ variables: { body: myBody, subjectID: subjectID } })
-                        }}
+                        onClick={
+                            async(e) => {
+                                e.preventDefault()
+                                document.getElementById('myBody').value = ''
+                                await setPost({ variables: { body: myBody, subjectID: subjectID } })
+                            }
+                        }
                     >
                         Publicar
                     </Button>

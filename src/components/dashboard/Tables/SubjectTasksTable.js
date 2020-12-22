@@ -20,14 +20,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
-//import FilterListIcon from '@material-ui/icons/FilterList';
 import AddIcon from '@material-ui/icons/Add';
 
-//const myData = { name: 'Hola', subject: 'ADSA', delivered: 'No' }
+import { dateFormat } from '../../../utils'
 
-function createData(data) {
-    return data;
-}
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -56,8 +52,9 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Nombre' },
-  { id: 'subject', numeric: true, disablePadding: false, label: 'Asignatura' },
+  { id: 'title', numeric: false, disablePadding: true, label: 'Nombre' },
+  { id: 'subjectID', numeric: true, disablePadding: false, label: 'Asignatura' },
+  { id: 'createdAt', numeric: true, disablePadding: false, label: 'Fecha de creación' },
   { id: 'delivered', numeric: true, disablePadding: false, label: 'Entregado' }
 ];
 
@@ -290,17 +287,17 @@ export default function EnhancedTable(props) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.title);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.title)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.title}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -310,10 +307,13 @@ export default function EnhancedTable(props) {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        {row.title}
                       </TableCell>
-                      <TableCell align="right">{row.subject}</TableCell>
-                      <TableCell align="right">{row.delivered}</TableCell>
+                      <TableCell align="right">{
+                        row.subjectID === '5f980acbe7a2dc22881ba735' ? 'Matemática' : 'No definido'
+                      }</TableCell>
+                      <TableCell align="right">{ dateFormat(row.createdAt) }</TableCell>
+                      <TableCell align="right">{row.delivered ? 'Sí' : 'No' }</TableCell>
                     </TableRow>
                   );
                 })}
@@ -335,10 +335,6 @@ export default function EnhancedTable(props) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </div>
   );
 }
